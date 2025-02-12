@@ -1,0 +1,15 @@
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Services.deps.json
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Services.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Services.pdb
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Dto.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Dto.pdb
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\refint\Services.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Services.pdb
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\ref\Services.dll
