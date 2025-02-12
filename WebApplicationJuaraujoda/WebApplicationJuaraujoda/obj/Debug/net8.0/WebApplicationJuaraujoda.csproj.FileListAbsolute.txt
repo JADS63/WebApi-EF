@@ -36,3 +36,16 @@ C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJua
 C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Dto.pdb
 C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Services.pdb
 C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Stub.pdb
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Namotion.Reflection.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NJsonSchema.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NJsonSchema.Annotations.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NJsonSchema.NewtonsoftJson.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NJsonSchema.Yaml.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NSwag.Annotations.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NSwag.AspNetCore.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NSwag.Core.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NSwag.Core.Yaml.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NSwag.Generation.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\NSwag.Generation.AspNetCore.dll
+C:\Users\juaraujoda\Desktop\EntityFrameworkAndWebAPIjuaraujoda\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\YamlDotNet.dll

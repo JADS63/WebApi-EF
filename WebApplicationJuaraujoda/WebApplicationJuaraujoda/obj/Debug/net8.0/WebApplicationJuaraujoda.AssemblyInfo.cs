@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApplicationJuaraujoda")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c43d47f2b7bc4336d674ae807b17e345dd7f8a3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a512548ab5be3fa592f95f11497f3ed6e32223c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApplicationJuaraujoda")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApplicationJuaraujoda")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
