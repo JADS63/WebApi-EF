@@ -9,7 +9,8 @@
       "Services/1.0.0": {
         "dependencies": {
           "Dto": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0"
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "Stub": "1.0.0"
         },
         "runtime": {
           "Services.dll": {}
@@ -85,7 +86,21 @@
       "System.Text.Encodings.Web/8.0.0": {},
       "Dto/1.0.0": {
         "runtime": {
-          "Dto.dll": {}
+          "Dto.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Stub/1.0.0": {
+        "dependencies": {
+          "Dto": "1.0.0"
+        },
+        "runtime": {
+          "Stub.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -153,6 +168,11 @@
       "hashPath": "system.text.encodings.web.8.0.0.nupkg.sha512"
     },
     "Dto/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Stub/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

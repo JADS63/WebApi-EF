@@ -257,16 +257,23 @@
       },
       "Dto/1.0.0": {
         "runtime": {
-          "Dto.dll": {}
+          "Dto.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Services/1.0.0": {
         "dependencies": {
           "Dto": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0"
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "Stub": "1.0.0"
         },
         "runtime": {
-          "Services.dll": {}
+          "Services.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Stub/1.0.0": {
@@ -274,7 +281,10 @@
           "Dto": "1.0.0"
         },
         "runtime": {
-          "Stub.dll": {}
+          "Stub.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

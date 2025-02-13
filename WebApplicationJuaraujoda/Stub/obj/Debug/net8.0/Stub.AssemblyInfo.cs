@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Stub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c43d47f2b7bc4336d674ae807b17e345dd7f8a3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ef318beaec972970c29ca496d53a7dca429729a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Stub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Stub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

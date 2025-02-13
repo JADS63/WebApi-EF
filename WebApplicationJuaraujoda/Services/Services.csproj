@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dto\Dto.csproj" />
+    <ProjectReference Include="..\Stub\Stub.csproj" />
   </ItemGroup>
 
 </Project>

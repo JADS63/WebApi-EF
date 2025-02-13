@@ -1,0 +1,33 @@
+[
+  {
+    "ContainingType": "WebApplicationJuaraujoda.Controllers.PlayersController",
+    "Method": "GetPlayers",
+    "RelativePath": "api/v1/Players",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "index",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "count",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplicationJuaraujoda.Controllers.PlayersController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Players/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

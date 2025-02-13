@@ -1,55 +1,77 @@
 using Microsoft.AspNetCore.Mvc;
 using Services;
-using Stub;
 using Dto;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace WebApplicationJuaraujoda.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class PlayersController : ControllerBase, IPlayerService
+    [Route("api/v1/[controller]")]
+    public class PlayersController : ControllerBase
     {
-        private List<PlayerDto> _players = Stub.StubTennis.GetPlayers();
+        private readonly IPlayerService _playerService;
 
-        public IEnumerable<IActionResult> GetAll()
+        public PlayersController(IPlayerService playerService)
         {
-            try
-            {
-                var result = _players;
-                if (result == null)
-                {
-                    return (IEnumerable<IActionResult>)NotFound();
-                }
-                else
-                {
-                    return (IEnumerable<IActionResult>)Ok(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                return (IEnumerable<IActionResult>)StatusCode(500);
-            }
-
+            _playerService = playerService;
         }
 
-        public IEnumerable<IActionResult> Getplayers(int index, int count)
+        [HttpGet("all")]
+        public IActionResult GetAll()
         {
             try
             {
-                var result = _players.FirstOrDefault();
-                if (result == null)
+                var players = _playerService.GetPlayers();
+                if (players == null || !players.Any())
                 {
-                    return (IEnumerable<IActionResult>)NotFound();
+                    return NotFound(new { error = "Aucun joueur trouvé." });
                 }
-                else
-                {
-                    return (IEnumerable<IActionResult>)Ok(result);
-                }
+                return Ok(players);
+            }
+            catch (ArgumentNullException argEx)
+            {
+                return BadRequest(new { error = "Erreur de paramètre : " + argEx.Message });
+            }
+            catch (InvalidOperationException invOpEx)
+            {
+                return StatusCode(500, new { error = "Erreur opérationnelle : " + invOpEx.Message });
             }
             catch (Exception ex)
             {
-                return (IEnumerable<IActionResult>)StatusCode(500);
+                return StatusCode(500, new { error = "Erreur interne du serveur : " + ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult GetPlayers([FromQuery] int index, [FromQuery] int count)
+        {
+            if (index < 0 || count <= 0)
+            {
+                return BadRequest(new { error = "Index ou count invalide. L'index doit être >= 0 et count > 0." });
+            }
+
+            try
+            {
+                var players = _playerService.GetPlayers(index, count);
+                if (players == null || !players.Any())
+                {
+                    return NotFound(new { error = "Aucun joueur trouvé pour les paramètres donnés." });
+                }
+                return Ok(players);
+            }
+            catch (ArgumentException argEx)
+            {
+                return BadRequest(new { error = "Erreur de paramètre : " + argEx.Message });
+            }
+            catch (InvalidOperationException invOpEx)
+            {
+                return StatusCode(500, new { error = "Erreur opérationnelle : " + invOpEx.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Erreur interne du serveur : " + ex.Message });
             }
         }
     }
