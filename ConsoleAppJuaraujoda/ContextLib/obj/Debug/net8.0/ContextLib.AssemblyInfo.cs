@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContextLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de2cdd9cce3cf291c0d4783939637e64e5859c83")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+591290230df02becbeea3756682474e70cc0fd0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContextLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContextLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
