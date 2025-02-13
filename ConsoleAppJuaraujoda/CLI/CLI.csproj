@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ContextLib\ContextLib.csproj" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+    <ProjectReference Include="..\StubbedContextLib\StubbedContextLib.csproj" />
+    <ProjectReference Include="..\TestStubEF\TestStubEF.csproj" />
+  </ItemGroup>
+
 </Project>

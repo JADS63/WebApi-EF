@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubbedContextLib", "Stubbe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStubEF", "TestStubEF\TestStubEF.csproj", "{61C6CE97-8F59-4025-846F-A6BC518CEAC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{C7079059-F69C-476A-9435-F6DFA182DE64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{61C6CE97-8F59-4025-846F-A6BC518CEAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C6CE97-8F59-4025-846F-A6BC518CEAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C6CE97-8F59-4025-846F-A6BC518CEAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7079059-F69C-476A-9435-F6DFA182DE64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7079059-F69C-476A-9435-F6DFA182DE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7079059-F69C-476A-9435-F6DFA182DE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7079059-F69C-476A-9435-F6DFA182DE64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
