@@ -1287,6 +1287,7 @@
       },
       "Shared/1.0.0": {
         "dependencies": {
+          "Dto": "1.0.0",
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
           "StubbedDtoLib": "1.0.0"

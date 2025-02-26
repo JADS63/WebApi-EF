@@ -1,6 +1,5 @@
 using Xunit;
 using Moq;
-using Services;
 using WebApplicationJuaraujoda.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,6 +8,8 @@ using WtaApi.Mappers;
 using Dto;
 using System.Linq;
 using System;
+using Microsoft.Extensions.Logging.Abstractions;
+using Services;
 
 namespace WebApplicationJuaraujoda.Tests
 {
@@ -20,7 +21,8 @@ namespace WebApplicationJuaraujoda.Tests
         public PlayersControllerTests()
         {
             _mockService = new Mock<IPlayerService>();
-            _controller = new PlayersController(_mockService.Object);
+            // Fournir un logger nul pour satisfaire le paramètre obligatoire
+            _controller = new PlayersController(_mockService.Object, NullLogger<PlayersController>.Instance);
         }
 
         [Fact]
@@ -59,6 +61,7 @@ namespace WebApplicationJuaraujoda.Tests
             // Assert
             Assert.NotNull(result);
             var response = result.Value as ApiResponse<List<PlayerDto>>;
+            Assert.NotNull(response);
             Assert.Equal(1, response.id);
             Assert.NotNull(response.result);
             Assert.Equal(2, response.result.Count);
@@ -70,7 +73,7 @@ namespace WebApplicationJuaraujoda.Tests
             // Arrange
             int index = 0;
             int count = 1;
-            // Ici, nous simulerons le retour d'une seule joueuse paginée
+            // Simuler le retour d'une seule joueuse paginée
             var players = new List<Player>
             {
                 new Player
@@ -96,6 +99,7 @@ namespace WebApplicationJuaraujoda.Tests
             // Assert
             Assert.NotNull(result);
             var response = result.Value as ApiResponse<List<PlayerDto>>;
+            Assert.NotNull(response);
             Assert.Equal(2, response.id);
             Assert.NotNull(response.result);
             Assert.Single(response.result);
