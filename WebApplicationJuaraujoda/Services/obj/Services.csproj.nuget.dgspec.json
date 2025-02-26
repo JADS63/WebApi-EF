@@ -102,8 +102,8 @@
               "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj": {
                 "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj"
               },
-              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj": {
-                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj"
+              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj": {
+                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj"
               }
             }
           }
@@ -149,12 +149,12 @@
         }
       }
     },
-    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj": {
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj",
-        "projectName": "Stub",
-        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj",
+        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj",
+        "projectName": "StubbedDtoLib",
+        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj",
         "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\obj\\",
         "projectStyle": "PackageReference",

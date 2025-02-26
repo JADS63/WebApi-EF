@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Services;
-using Dto;
 using System;
 using System.Linq;
+using WtaApi.Mappers;
+using Dto;
+using System.Collections.Generic;
 
 namespace WebApplicationJuaraujoda.Controllers
 {
@@ -24,10 +26,22 @@ namespace WebApplicationJuaraujoda.Controllers
             {
                 var players = _playerService.GetPlayers();
                 if (players == null || !players.Any())
-                {
                     return NotFound(new { error = "Aucun joueur trouvé." });
-                }
-                return Ok(players);
+                var playersDto = players.Select(p => PlayerMapper.ToDto(p)).ToList();
+                var response = new ApiResponse<List<PlayerDto>>
+                {
+                    result = playersDto,
+                    id = 1,
+                    exception = null,
+                    status = 5,
+                    isCanceled = false,
+                    isCompleted = true,
+                    isCompletedSuccessfully = true,
+                    creationOptions = 0,
+                    asyncState = null,
+                    isFaulted = false
+                };
+                return Ok(response);
             }
             catch (ArgumentNullException argEx)
             {
@@ -43,23 +57,31 @@ namespace WebApplicationJuaraujoda.Controllers
             }
         }
 
-
         [HttpGet]
-        public IActionResult GetPlayers([FromQuery] int index, [FromQuery] int count)
+        public IActionResult GetPlayers([FromQuery] PaginationDto pagination)
         {
-            if (index < 0 || count <= 0)
-            {
+            if (pagination.Index < 0 || pagination.Count <= 0)
                 return BadRequest(new { error = "Index ou count invalide. L'index doit être >= 0 et count > 0." });
-            }
-
             try
             {
-                var players = _playerService.GetPlayers(index, count);
+                var players = _playerService.GetPlayers(pagination.Index, pagination.Count);
                 if (players == null || !players.Any())
-                {
                     return NotFound(new { error = "Aucun joueur trouvé pour les paramètres donnés." });
-                }
-                return Ok(players);
+                var playersDto = players.Select(p => PlayerMapper.ToDto(p)).ToList();
+                var response = new ApiResponse<List<PlayerDto>>
+                {
+                    result = playersDto,
+                    id = 2,
+                    exception = null,
+                    status = 5,
+                    isCanceled = false,
+                    isCompleted = true,
+                    isCompletedSuccessfully = true,
+                    creationOptions = 0,
+                    asyncState = null,
+                    isFaulted = false
+                };
+                return Ok(response);
             }
             catch (ArgumentException argEx)
             {

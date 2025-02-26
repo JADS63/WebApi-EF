@@ -8,12 +8,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "index",
+        "Name": "Index",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "count",
+        "Name": "Count",
         "Type": "System.Int32",
         "IsRequired": false
       }

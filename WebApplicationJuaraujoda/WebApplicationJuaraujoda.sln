@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationJuaraujoda", "WebApplicationJuaraujoda\WebApplicationJuaraujoda.csproj", "{FAA09A3E-C577-4B4A-A730-8607741D1761}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WtaApi", "WebApplicationJuaraujoda\WtaApi.csproj", "{FAA09A3E-C577-4B4A-A730-8607741D1761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{83F01956-43D6-4F3D-A70F-BDE55AAFD98B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Services\Shared.csproj", "{83F01956-43D6-4F3D-A70F-BDE55AAFD98B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stub", "Stub\Stub.csproj", "{D0D4C59E-1D8F-4B8A-BCF7-7CBA1A94E97A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubbedDtoLib", "Stub\StubbedDtoLib.csproj", "{D0D4C59E-1D8F-4B8A-BCF7-7CBA1A94E97A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dto", "Dto\Dto.csproj", "{48DF1AAB-FD30-4911-969F-22EB8CFA8A48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{FF4116E0-B383-4137-8DC6-242BA3332BD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7433DD08-5C6C-4E49-BD12-E2D4AA749514}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{48DF1AAB-FD30-4911-969F-22EB8CFA8A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48DF1AAB-FD30-4911-969F-22EB8CFA8A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48DF1AAB-FD30-4911-969F-22EB8CFA8A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF4116E0-B383-4137-8DC6-242BA3332BD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4116E0-B383-4137-8DC6-242BA3332BD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4116E0-B383-4137-8DC6-242BA3332BD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF4116E0-B383-4137-8DC6-242BA3332BD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7433DD08-5C6C-4E49-BD12-E2D4AA749514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7433DD08-5C6C-4E49-BD12-E2D4AA749514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7433DD08-5C6C-4E49-BD12-E2D4AA749514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7433DD08-5C6C-4E49-BD12-E2D4AA749514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

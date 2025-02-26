@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\WebApplicationJuaraujoda.props" />
-</Project>

@@ -512,32 +512,42 @@
           "bin/placeholder/Dto.dll": {}
         }
       },
-      "Services/1.0.0": {
+      "Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Dto": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
-          "Stub": "1.0.0"
-        },
         "compile": {
-          "bin/placeholder/Services.dll": {}
+          "bin/placeholder/Entities.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Services.dll": {}
+          "bin/placeholder/Entities.dll": {}
         }
       },
-      "Stub/1.0.0": {
+      "Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "Dto": "1.0.0"
+          "Entities": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "StubbedDtoLib": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Stub.dll": {}
+          "bin/placeholder/Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Stub.dll": {}
+          "bin/placeholder/Shared.dll": {}
+        }
+      },
+      "StubbedDtoLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/StubbedDtoLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StubbedDtoLib.dll": {}
         }
       }
     }
@@ -1396,23 +1406,29 @@
       "path": "../Dto/Dto.csproj",
       "msbuildProject": "../Dto/Dto.csproj"
     },
-    "Services/1.0.0": {
+    "Entities/1.0.0": {
       "type": "project",
-      "path": "../Services/Services.csproj",
-      "msbuildProject": "../Services/Services.csproj"
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
     },
-    "Stub/1.0.0": {
+    "Shared/1.0.0": {
       "type": "project",
-      "path": "../Stub/Stub.csproj",
-      "msbuildProject": "../Stub/Stub.csproj"
+      "path": "../Services/Shared.csproj",
+      "msbuildProject": "../Services/Shared.csproj"
+    },
+    "StubbedDtoLib/1.0.0": {
+      "type": "project",
+      "path": "../Stub/StubbedDtoLib.csproj",
+      "msbuildProject": "../Stub/StubbedDtoLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Dto >= 1.0.0",
+      "Entities >= 1.0.0",
       "NSwag.AspNetCore >= 14.2.0",
-      "Services >= 1.0.0",
-      "Stub >= 1.0.0",
+      "Shared >= 1.0.0",
+      "StubbedDtoLib >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -1423,9 +1439,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda.csproj",
-      "projectName": "WebApplicationJuaraujoda",
-      "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda.csproj",
+      "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj",
+      "projectName": "WtaApi",
+      "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj",
       "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\obj\\",
       "projectStyle": "PackageReference",
@@ -1452,11 +1468,14 @@
             "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj": {
               "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj"
             },
-            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Services.csproj"
+            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj"
             },
-            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj": {
-              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\Stub.csproj"
+            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Shared.csproj": {
+              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Shared.csproj"
+            },
+            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj": {
+              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj"
             }
           }
         }

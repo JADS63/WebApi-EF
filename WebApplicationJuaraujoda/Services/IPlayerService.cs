@@ -1,11 +1,11 @@
-﻿using Dto;
+﻿using Entities;
 using System.Collections.Generic;
 
 namespace Services
 {
     public interface IPlayerService
     {
-        IEnumerable<PlayerDto> GetPlayers();
-        IEnumerable<PlayerDto> GetPlayers(int index, int count);
+        IEnumerable<Player> GetPlayers();
+        IEnumerable<Player> GetPlayers(int index, int count);
     }
 }

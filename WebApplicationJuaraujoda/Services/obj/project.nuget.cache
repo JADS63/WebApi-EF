@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7oO41naMUPk=",
+  "dgSpecHash": "L3suAvCGSFk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Shared.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
