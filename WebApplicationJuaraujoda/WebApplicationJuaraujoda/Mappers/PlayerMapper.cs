@@ -16,6 +16,7 @@ namespace WtaApi.Mappers
                 LastName = player.LastName,
                 Height = player.Height,
                 BirthDate = player.BirthDate,
+                // Conversion explicite : on convertit Entities.HandPlay en int puis en Dto.HandPlay.
                 HandPlay = (Dto.HandPlay)(int)player.HandPlay,
                 Nationality = player.Nationality
             };
@@ -32,6 +33,7 @@ namespace WtaApi.Mappers
                 LastName = dto.LastName,
                 Height = dto.Height,
                 BirthDate = dto.BirthDate,
+                // Conversion explicite : on convertit Dto.HandPlay en int puis en Entities.HandPlay.
                 HandPlay = (Entities.HandPlay)(int)dto.HandPlay,
                 Nationality = dto.Nationality
             };

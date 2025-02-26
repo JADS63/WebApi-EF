@@ -26,6 +26,7 @@ namespace WebApplicationJuaraujoda.Tests
         [Fact]
         public void GetAll_ReturnsOkResult_WithPlayers()
         {
+            // Arrange
             var players = new List<Player>
             {
                 new Player
@@ -52,8 +53,10 @@ namespace WebApplicationJuaraujoda.Tests
 
             _mockService.Setup(s => s.GetPlayers()).Returns(players);
 
-            var result = _controller.GetAll() as OkObjectResult;
+            // Act : appel sans paramètres => retourne toutes les joueuses avec id = 1
+            var result = _controller.GetPlayers() as OkObjectResult;
 
+            // Assert
             Assert.NotNull(result);
             var response = result.Value as ApiResponse<List<PlayerDto>>;
             Assert.Equal(1, response.id);
@@ -64,8 +67,10 @@ namespace WebApplicationJuaraujoda.Tests
         [Fact]
         public void GetPlayers_WithPagination_ReturnsOkResult_WithPaginatedPlayers()
         {
+            // Arrange
             int index = 0;
             int count = 1;
+            // Ici, nous simulerons le retour d'une seule joueuse paginée
             var players = new List<Player>
             {
                 new Player
@@ -80,11 +85,15 @@ namespace WebApplicationJuaraujoda.Tests
                 }
             };
 
-            _mockService.Setup(s => s.GetPlayers(index, count)).Returns(players);
+            // Nous définissons sortCriteria = 1 (par exemple, correspondant à Dto.SortCriteria.ByNameThenFirstName)
+            _mockService.Setup(s => s.GetPlayers(index, count, 1)).Returns(players);
+
             var pagination = new PaginationDto { Index = index, Count = count };
 
-            var result = _controller.GetPlayers(pagination) as OkObjectResult;
+            // Act : appel avec pagination et sortCriteria = 1 => retourne les joueuses paginées avec id = 2
+            var result = _controller.GetPlayers(pagination, 1) as OkObjectResult;
 
+            // Assert
             Assert.NotNull(result);
             var response = result.Value as ApiResponse<List<PlayerDto>>;
             Assert.Equal(2, response.id);

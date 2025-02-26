@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using System;
+
+namespace Entities
 {
     public class Player
     {
@@ -10,11 +12,12 @@
         public HandPlay HandPlay { get; set; }
         public string Nationality { get; set; }
     }
+
     public enum HandPlay
     {
-        None,
-        Left,
-        Right,
-        LeftAndRight
+        None = 0,
+        Left = 1,
+        Right = 2,
+        LeftAndRight = 3
     }
 }
