@@ -2,9 +2,7 @@ C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuarau
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Shared.dll
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Shared.pdb
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Entities.dll
-C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\StubbedDtoLib.dll
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\Entities.pdb
-C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\bin\Debug\net8.0\StubbedDtoLib.pdb
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Shared.csproj.AssemblyReference.cache
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Shared.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Services\obj\Debug\net8.0\Shared.AssemblyInfoInputs.cache

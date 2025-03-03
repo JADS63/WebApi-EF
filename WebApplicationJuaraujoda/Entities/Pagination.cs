@@ -1,7 +1,7 @@
-﻿namespace Dto
+﻿namespace Entities
 {
 
-    public class PaginationDto
+    public class Pagination
     {
         public int Index { get; set; }
         public int Count { get; set; }

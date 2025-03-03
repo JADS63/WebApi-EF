@@ -151,19 +151,6 @@
         "runtime": {
           "bin/placeholder/Entities.dll": {}
         }
-      },
-      "StubbedDtoLib/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Entities": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/StubbedDtoLib.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/StubbedDtoLib.dll": {}
-        }
       }
     }
   },
@@ -327,19 +314,13 @@
       "type": "project",
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
-    },
-    "StubbedDtoLib/1.0.0": {
-      "type": "project",
-      "path": "../Stub/StubbedDtoLib.csproj",
-      "msbuildProject": "../Stub/StubbedDtoLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Dto >= 1.0.0",
       "Entities >= 1.0.0",
-      "Microsoft.AspNetCore.Mvc.Abstractions >= 2.3.0",
-      "StubbedDtoLib >= 1.0.0"
+      "Microsoft.AspNetCore.Mvc.Abstractions >= 2.3.0"
     ]
   },
   "packageFolders": {
@@ -380,9 +361,6 @@
             },
             "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj"
-            },
-            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj": {
-              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj"
             }
           }
         }

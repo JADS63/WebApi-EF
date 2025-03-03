@@ -2,6 +2,16 @@
 
 namespace Dto
 {
+
+    public enum HandPlay
+    {
+        None = 0,
+        Left = 1,
+        Right = 2,
+        LeftAndRight = 3
+    }
+
+
     public class PlayerDto
     {
         public int Id { get; set; }
@@ -11,13 +21,5 @@ namespace Dto
         public DateTime BirthDate { get; set; }
         public HandPlay HandPlay { get; set; }
         public string Nationality { get; set; }
-    }
-
-    public enum HandPlay
-    {
-        None = 0,
-        Left = 1,
-        Right = 2,
-        LeftAndRight = 3
     }
 }

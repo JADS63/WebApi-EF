@@ -13,3 +13,7 @@ C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuarau
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\obj\Debug\net8.0\refint\StubbedDtoLib.dll
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\obj\Debug\net8.0\StubbedDtoLib.pdb
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\obj\Debug\net8.0\ref\StubbedDtoLib.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Dto.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Shared.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Dto.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Shared.pdb

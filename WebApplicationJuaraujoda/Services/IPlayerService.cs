@@ -1,20 +1,21 @@
 ﻿using Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Services
 {
     public interface IPlayerService
     {
-        IEnumerable<Player> GetPlayers();
-        IEnumerable<Player> GetPlayers(int index, int count, int sortCriteria);
-        IEnumerable<Player> GetPlayersByName(string name, int index, int count, int sortCriteria);
-        IEnumerable<Player> GetPlayersByNationality(string nationality, int index, int count, int sortCriteria);
-        Player GetPlayerById(int id);
-        Player AddPlayer(Player player);
-        Player UpdatePlayer(int id, Player player);
-        bool DeletePlayer(int id);
-        int GetTotalCount();
-        int GetTotalCountByName(string name);
-        int GetTotalCountByNationality(string nationality);
+        Task<IEnumerable<Player>> GetPlayersAsync();
+        Task<IEnumerable<Player>> GetPlayersAsync(int index, int count, int sortCriteria);
+        Task<IEnumerable<Player>> GetPlayersByNameAsync(string name, int index, int count, int sortCriteria);
+        Task<IEnumerable<Player>> GetPlayersByNationalityAsync(string nationality, int index, int count, int sortCriteria);
+        Task<Player> GetPlayerByIdAsync(int id);
+        Task<Player> AddPlayerAsync(Player player);
+        Task<Player> UpdatePlayerAsync(int id, Player player);
+        Task<bool> DeletePlayerAsync(int id);
+        Task<int> GetTotalCountAsync();
+        Task<int> GetTotalCountByNameAsync(string name);
+        Task<int> GetTotalCountByNationalityAsync(string nationality);
     }
 }

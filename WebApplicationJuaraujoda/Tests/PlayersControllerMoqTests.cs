@@ -8,6 +8,7 @@ using Dto;
 using System;
 using Microsoft.Extensions.Logging.Abstractions;
 using Services;
+using System.Threading.Tasks;
 
 namespace WebApplicationJuaraujoda.Tests
 {
@@ -24,7 +25,7 @@ namespace WebApplicationJuaraujoda.Tests
         }
 
         [Fact]
-        public void PostPlayer_ReturnsCreatedAtActionResult_WithCreatedPlayerDto()
+        public async Task PostPlayer_ReturnsCreatedAtActionResult_WithCreatedPlayerDto()
         {
             // Arrange
             var newPlayerDto = new PlayerDto
@@ -34,7 +35,6 @@ namespace WebApplicationJuaraujoda.Tests
                 LastName = "Ostapenko",
                 Height = 1.77,
                 BirthDate = new DateTime(1997, 6, 8),
-                // Utilisation directe de l'énumération Dto.HandPlay.Right
                 HandPlay = Dto.HandPlay.Right,
                 Nationality = "Latvia"
             };
@@ -50,32 +50,32 @@ namespace WebApplicationJuaraujoda.Tests
                 Nationality = newPlayerDto.Nationality
             };
 
-            _mockService.Setup(s => s.AddPlayer(It.IsAny<Player>())).Returns(createdPlayer);
+            _mockService.Setup(s => s.AddPlayerAsync(It.IsAny<Player>())).ReturnsAsync(createdPlayer);
 
             // Act
-            var result = _controller.PostPlayer(newPlayerDto) as CreatedAtActionResult;
+            var result = await _controller.PostPlayer(newPlayerDto);
+            var createdAtResult = result as CreatedAtActionResult;
 
             // Assert
-            Assert.NotNull(result);
-            Assert.Equal(nameof(PlayersController.GetPlayerById), result.ActionName);
-            var returnedDto = result.Value as PlayerDto;
+            Assert.NotNull(createdAtResult);
+            Assert.Equal(nameof(PlayersController.GetPlayerById), createdAtResult.ActionName);
+            var returnedDto = createdAtResult.Value as PlayerDto;
             Assert.NotNull(returnedDto);
             Assert.Equal(51, returnedDto.Id);
         }
 
         [Fact]
-        public void PutPlayer_ReturnsOkResult_WithUpdatedPlayerDto()
+        public async Task PutPlayer_ReturnsOkResult_WithUpdatedPlayerDto()
         {
             // Arrange
             int id = 51;
             var updatedPlayerDto = new PlayerDto
             {
-                Id = 0, // l'ID est ignoré dans le DTO lors de l'update
+                Id = 0, // l'ID est ignoré dans le DTO lors de la mise à jour
                 FirstName = "Beatriz",
                 LastName = "Hadda Maia",
                 Height = 1.85,
                 BirthDate = new DateTime(1996, 5, 30),
-                // Utilisation directe de l'énumération Dto.HandPlay.Left
                 HandPlay = Dto.HandPlay.Left,
                 Nationality = "Brazil"
             };
@@ -91,14 +91,15 @@ namespace WebApplicationJuaraujoda.Tests
                 Nationality = updatedPlayerDto.Nationality
             };
 
-            _mockService.Setup(s => s.UpdatePlayer(id, It.IsAny<Player>())).Returns(updatedPlayer);
+            _mockService.Setup(s => s.UpdatePlayerAsync(id, It.IsAny<Player>())).ReturnsAsync(updatedPlayer);
 
             // Act
-            var result = _controller.PutPlayer(id, updatedPlayerDto) as OkObjectResult;
+            var result = await _controller.PutPlayer(id, updatedPlayerDto);
+            var okResult = result as OkObjectResult;
 
             // Assert
-            Assert.NotNull(result);
-            var returnedDto = result.Value as PlayerDto;
+            Assert.NotNull(okResult);
+            var returnedDto = okResult.Value as PlayerDto;
             Assert.NotNull(returnedDto);
             Assert.Equal(id, returnedDto.Id);
             Assert.Equal("Beatriz", returnedDto.FirstName);

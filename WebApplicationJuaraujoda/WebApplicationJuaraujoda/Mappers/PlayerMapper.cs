@@ -3,12 +3,16 @@ using Entities;
 
 namespace WtaApi.Mappers
 {
+    /// <summary>
+    /// Fournit des méthodes pour transformer une entité Player en PlayerDto et inversement.
+    /// </summary>
     public static class PlayerMapper
     {
         public static PlayerDto ToDto(Player player)
         {
             if (player == null)
                 return null;
+
             return new PlayerDto
             {
                 Id = player.Id,
@@ -16,26 +20,27 @@ namespace WtaApi.Mappers
                 LastName = player.LastName,
                 Height = player.Height,
                 BirthDate = player.BirthDate,
-                // Conversion explicite : on convertit Entities.HandPlay en int puis en Dto.HandPlay.
-                HandPlay = (Dto.HandPlay)(int)player.HandPlay,
+                // Conversion de l'énumération : on suppose que les valeurs numériques sont identiques.
+                HandPlay = (Dto.HandPlay)player.HandPlay,
                 Nationality = player.Nationality
             };
         }
 
-        public static Player ToEntity(PlayerDto dto)
+        public static Player ToEntity(PlayerDto playerDto)
         {
-            if (dto == null)
+            if (playerDto == null)
                 return null;
+
             return new Player
             {
-                Id = dto.Id,
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                Height = dto.Height,
-                BirthDate = dto.BirthDate,
-                // Conversion explicite : on convertit Dto.HandPlay en int puis en Entities.HandPlay.
-                HandPlay = (Entities.HandPlay)(int)dto.HandPlay,
-                Nationality = dto.Nationality
+                Id = playerDto.Id,
+                FirstName = playerDto.FirstName,
+                LastName = playerDto.LastName,
+                Height = playerDto.Height,
+                BirthDate = playerDto.BirthDate,
+                // Conversion de l'énumération.
+                HandPlay = (Entities.HandPlay)playerDto.HandPlay,
+                Nationality = playerDto.Nationality
             };
         }
     }
