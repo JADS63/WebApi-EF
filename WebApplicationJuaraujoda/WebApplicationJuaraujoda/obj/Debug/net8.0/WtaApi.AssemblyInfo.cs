@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WtaApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa49f06a2f95b75b1b15c575945692bd63c3906b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b05c7c6dd7b427b71576c9d56e54ee9df4ad68a")]
 [assembly: System.Reflection.AssemblyProductAttribute("WtaApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WtaApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

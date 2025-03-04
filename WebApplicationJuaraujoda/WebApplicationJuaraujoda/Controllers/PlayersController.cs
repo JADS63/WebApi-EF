@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services;
 using Entities;
-using WtaApi.Mappers;
 using Dto;
+using WtaApi.Mappers;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -25,6 +25,26 @@ namespace WebApplicationJuaraujoda.Controllers
         }
 
         /// <summary>
+        /// Méthode privée pour créer une réponse standardisée avec conversion en DTO.
+        /// </summary>
+        private ApiResponseDto<List<PlayerDto>> CreateApiResponse(List<PlayerDto> playersDto, int responseId)
+        {
+            return new ApiResponseDto<List<PlayerDto>>
+            {
+                Id = responseId,
+                Result = playersDto,
+                Exception = null,
+                Status = 5,
+                IsCanceled = false,
+                IsCompleted = true,
+                IsCompletedSuccessfully = true,
+                CreationOptions = 0,
+                AsyncState = null,
+                IsFaulted = false
+            };
+        }
+
+        /// <summary>
         /// GET /api/v1/players/{id}
         /// Récupère une joueuse par son identifiant.
         /// </summary>
@@ -32,15 +52,12 @@ namespace WebApplicationJuaraujoda.Controllers
         public async Task<IActionResult> GetPlayerById(int id)
         {
             _logger.LogInformation("GetPlayerById called with id: {Id}", id);
-            // Récupération de l'entité métier depuis le service
             var playerEntity = await _playerService.GetPlayerByIdAsync(id);
             if (playerEntity == null)
             {
                 _logger.LogWarning("Player with id {Id} not found.", id);
                 return NotFound(new { error = "Player not found." });
             }
-            _logger.LogInformation("Player with id {Id} found.", id);
-            // Conversion de l'entité en DTO avant de retourner la réponse
             var playerDto = PlayerMapper.ToDto(playerEntity);
             return Ok(playerDto);
         }
@@ -57,47 +74,18 @@ namespace WebApplicationJuaraujoda.Controllers
             int responseId;
             if (pagination != null && pagination.Index >= 0 && pagination.Count > 0 && criterium.HasValue)
             {
-                // Récupération paginée et triée via le service (entités)
                 var playersEntity = await _playerService.GetPlayersAsync(pagination.Index, pagination.Count, criterium.Value);
-                var total = await _playerService.GetTotalCountAsync();
                 playersDto = playersEntity.Select(p => PlayerMapper.ToDto(p)).ToList();
                 responseId = 2;
-                var response = new ApiResponseDto<List<PlayerDto>>
-                {
-                    Id = responseId,
-                    Result = playersDto,
-                    Exception = null,
-                    Status = 5,
-                    IsCanceled = false,
-                    IsCompleted = true,
-                    IsCompletedSuccessfully = true,
-                    CreationOptions = 0,
-                    AsyncState = null,
-                    IsFaulted = false
-                };
-                return Ok(response);
             }
             else
             {
-                // Récupération de toutes les joueuses (entités)
                 var playersEntity = await _playerService.GetPlayersAsync();
                 playersDto = playersEntity.Select(p => PlayerMapper.ToDto(p)).ToList();
                 responseId = 1;
-                var response = new ApiResponseDto<List<PlayerDto>>
-                {
-                    Id = responseId,
-                    Result = playersDto,
-                    Exception = null,
-                    Status = 5,
-                    IsCanceled = false,
-                    IsCompleted = true,
-                    IsCompletedSuccessfully = true,
-                    CreationOptions = 0,
-                    AsyncState = null,
-                    IsFaulted = false
-                };
-                return Ok(response);
             }
+            var response = CreateApiResponse(playersDto, responseId);
+            return Ok(response);
         }
 
         /// <summary>
@@ -156,7 +144,7 @@ namespace WebApplicationJuaraujoda.Controllers
 
         /// <summary>
         /// POST /api/v1/players
-        /// Ajoute une nouvelle joueuse.
+        /// Ajoute une nouvelle joueuse en convertissant le DTO en entité pour le traitement.
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> PostPlayer([FromBody] PlayerDto playerDto)
@@ -167,7 +155,7 @@ namespace WebApplicationJuaraujoda.Controllers
                 _logger.LogWarning("Invalid player data received in PostPlayer.");
                 return BadRequest(new { error = "Invalid player data." });
             }
-            // Conversion du DTO en entité pour le traitement métier
+            // Conversion du DTO en entité pour le traitement
             var playerEntity = PlayerMapper.ToEntity(playerDto);
             var createdPlayerEntity = await _playerService.AddPlayerAsync(playerEntity);
             _logger.LogInformation("Player created with id {Id}.", createdPlayerEntity.Id);
@@ -178,7 +166,7 @@ namespace WebApplicationJuaraujoda.Controllers
 
         /// <summary>
         /// PUT /api/v1/players?id=51
-        /// Met à jour une joueuse existante.
+        /// Met à jour une joueuse existante en convertissant le DTO en entité pour la mise à jour.
         /// </summary>
         [HttpPut]
         public async Task<IActionResult> PutPlayer([FromQuery] int id, [FromBody] PlayerDto playerDto)
@@ -189,15 +177,15 @@ namespace WebApplicationJuaraujoda.Controllers
                 _logger.LogWarning("Invalid player data received in PutPlayer.");
                 return BadRequest(new { error = "Invalid player data." });
             }
-            // Conversion du DTO en entité pour mise à jour
-            var updatedPlayerEntity = await _playerService.UpdatePlayerAsync(id, PlayerMapper.ToEntity(playerDto));
+            // Conversion du DTO en entité pour effectuer la mise à jour
+            var playerEntityForUpdate = PlayerMapper.ToEntity(playerDto);
+            var updatedPlayerEntity = await _playerService.UpdatePlayerAsync(id, playerEntityForUpdate);
             if (updatedPlayerEntity == null)
             {
                 _logger.LogWarning("Player with id {Id} not found for update.", id);
                 return NotFound(new { error = "Player not found." });
             }
             _logger.LogInformation("Player with id {Id} updated successfully.", id);
-            // Conversion de l'entité mise à jour en DTO pour la réponse
             var updatedPlayerDto = PlayerMapper.ToDto(updatedPlayerEntity);
             return Ok(updatedPlayerDto);
         }
