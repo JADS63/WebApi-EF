@@ -151,7 +151,7 @@ namespace Services
             existing.LastName = player.LastName;
             existing.Height = player.Height;
             existing.BirthDate = player.BirthDate;
-            existing.HandPlay = player.HandPlay; // Assurez-vous que ce "HandPlay" fait référence à Entities.HandPlay
+            existing.HandPlay = player.HandPlay;
             existing.Nationality = player.Nationality;
             return Task.FromResult(existing);
         }
