@@ -10,7 +10,9 @@
         "dependencies": {
           "Dto": "1.0.0",
           "Entities": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0"
+          "Extensions": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "WebApiUtilisation": "1.0.0"
         },
         "runtime": {
           "Shared.dll": {}
@@ -99,6 +101,26 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Extensions/1.0.0": {
+        "dependencies": {
+          "Dto": "1.0.0",
+          "Entities": "1.0.0"
+        },
+        "runtime": {
+          "Extensions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "WebApiUtilisation/1.0.0": {
+        "runtime": {
+          "WebApiUtilisation.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -170,6 +192,16 @@
       "sha512": ""
     },
     "Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Extensions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WebApiUtilisation/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

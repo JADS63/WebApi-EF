@@ -152,19 +152,45 @@
           "bin/placeholder/Entities.dll": {}
         }
       },
+      "Extensions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Dto": "1.0.0",
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Extensions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Extensions.dll": {}
+        }
+      },
       "Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Dto": "1.0.0",
           "Entities": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0"
+          "Extensions": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "WebApiUtilisation": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Shared.dll": {}
         },
         "runtime": {
           "bin/placeholder/Shared.dll": {}
+        }
+      },
+      "WebApiUtilisation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/WebApiUtilisation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WebApiUtilisation.dll": {}
         }
       }
     }
@@ -330,10 +356,20 @@
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
     },
+    "Extensions/1.0.0": {
+      "type": "project",
+      "path": "../Extensions/Extensions.csproj",
+      "msbuildProject": "../Extensions/Extensions.csproj"
+    },
     "Shared/1.0.0": {
       "type": "project",
       "path": "../Services/Shared.csproj",
       "msbuildProject": "../Services/Shared.csproj"
+    },
+    "WebApiUtilisation/1.0.0": {
+      "type": "project",
+      "path": "../WebApiUtilisation/WebApiUtilisation.csproj",
+      "msbuildProject": "../WebApiUtilisation/WebApiUtilisation.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -136,6 +136,79 @@
         }
       }
     },
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Extensions\\Extensions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Extensions\\Extensions.csproj",
+        "projectName": "Extensions",
+        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Extensions\\Extensions.csproj",
+        "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Extensions\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\julie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj": {
+                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj"
+              },
+              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -170,6 +243,12 @@
               },
               "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj": {
                 "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj"
+              },
+              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Extensions\\Extensions.csproj": {
+                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Extensions\\Extensions.csproj"
+              },
+              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj": {
+                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj"
               }
             }
           }
@@ -291,14 +370,14 @@
         }
       }
     },
-    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj": {
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj",
-        "projectName": "WtaApi",
-        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj",
+        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj",
+        "projectName": "WebApiUtilisation",
+        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj",
         "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\obj\\",
+        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -319,6 +398,72 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj",
+        "projectName": "WtaApi",
+        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\WtaApi.csproj",
+        "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApplicationJuaraujoda\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\julie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {
               "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj": {
                 "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj"
@@ -348,8 +493,8 @@
         "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "NSwag.AspNetCore": {
               "target": "Package",

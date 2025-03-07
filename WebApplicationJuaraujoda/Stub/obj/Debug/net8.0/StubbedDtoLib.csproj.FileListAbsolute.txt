@@ -17,3 +17,7 @@ C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuarau
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Shared.dll
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Dto.pdb
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Shared.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Extensions.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\WebApiUtilisation.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\Extensions.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Stub\bin\Debug\net8.0\WebApiUtilisation.pdb

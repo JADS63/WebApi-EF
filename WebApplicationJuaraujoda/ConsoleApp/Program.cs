@@ -1,49 +1,34 @@
-﻿// See https://aka.ms/new-console-template for more information
-using WebApiUtilisation;
-using Dto;
+﻿using System;
+using System.Threading.Tasks;
+using Entities;
+using Services;
 
-
-
-// La méthode Get Testée 
-string BaseApiUrlPlayersGet = @"https://codefirst.iut.uca.fr/containers/mchSamples_NET-my_favorite_things_api/Albums";
-string RouteGetAlbums = "{0}?index={1}&count={2}";
-string route = string.Format(RouteGetAlbums, BaseApiUrlPlayersGet, 0, 5);
-IEnumerable<PlayerDto> result = await GetFromRoute<IEnumerable<PlayerDto>>(route);
-
-// La méthode Post Testée 
-string BaseApiUrlPlayersPost = @"https://codefirst.iut.uca.fr/containers/mchSamples_NET-my_favorite_things_api/Albums";
-PlayerDto item = new PlayerDto
+namespace ConsoleApp
 {
-    Id = 100,
-    FirstName = "David Murray",
-    BirthDate = new DateTime(2024, 5, 17),
-    Height = 175,
-    HandPlay = HandPlay.None,
-    LastName = "Test",
-    Nationality = "usa"
-};
-PlayerDto? inserted = await PostItemAsync(BaseApiUrlPlayersPost, item);
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            IPlayerService playerService = new PlayerServiceModel();
 
-// La méthode Put Testée 
-string BaseApiUrlPlayersPut = @"https://codefirst.iut.uca.fr/containers/mchSamples_NET-my_favorite_things_api/Albums";
-string RoutePutPlayers = "{0}?id={1}";
-string route2 = string.Format(RoutePutPlayers, BaseApiUrlPlayersPut, 9);
-PlayerDto item2 = new PlayerDto
-{
-    Id = 100,
-    FirstName = "David Murray",
-    BirthDate = new DateTime(2024, 5, 17),
-    Height = 175,
-    HandPlay = HandPlay.None,
-    LastName = "Test",
-    Nationality = "usa"
-};
-PlayerDto? updated = await PutItemAsync(route2, item2);
+            var players = await playerService.GetPlayersAsync();
+            foreach (var player in players)
+            {
+                Console.WriteLine($"{player.Id} - {player.FirstName} {player.LastName}");
+            }
 
+            var newPlayer = new Player
+            {
+                Id = 0, 
+                FirstName = "John",
+                LastName = "Doe",
+                BirthDate = DateTime.Now.AddYears(-25),
+                Height = 180,
+                Nationality = "USA"
+            };
+            var addedPlayer = await playerService.AddPlayerAsync(newPlayer);
+            Console.WriteLine($"Nouveau joueur ajouté : {addedPlayer.Id} - {addedPlayer.FirstName} {addedPlayer.LastName}");
 
-// La méthode Delete Testée 
-
-string BaseApiUrlPlayersDelete = @"https://codefirst.iut.uca.fr/containers/mchSamples_NET-my_favorite_things_api/Albums";
-string RouteDeletePlayers = "{0}?id={1}";
-string route3 = string.Format(RouteDeletePlayers, BaseApiUrlPlayersDelete, 9);
-bool result2 = await DeleteItemAsync(route3);
+        }
+    }
+}

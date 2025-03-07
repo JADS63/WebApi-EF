@@ -55,3 +55,7 @@ C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuarau
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net8.0\WtaApi.genruntimeconfig.cache
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net8.0\ref\WtaApi.dll
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Extensions.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\WebApiUtilisation.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\Extensions.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\bin\Debug\net8.0\WebApiUtilisation.pdb

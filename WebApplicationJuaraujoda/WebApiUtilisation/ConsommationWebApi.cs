@@ -9,7 +9,7 @@ namespace WebApiUtilisation
     {
         HttpClient Client { get; set; } = new HttpClient();
 
-        async Task<T?> GetFromRoute<T>(string route)
+        public async Task<T?> GetFromRoute<T>(string route)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace WebApiUtilisation
             }
         }
 
-        async Task<TOutputDto?> PostItemAsync<TInputDto, TOutputDto>(string route, TInputDto item) where TInputDto : class where TOutputDto : class
+        public async Task<TOutputDto?> PostItemAsync<TInputDto, TOutputDto>(string route, TInputDto item) where TInputDto : class where TOutputDto : class
         {
             try
             {
@@ -84,9 +84,9 @@ namespace WebApiUtilisation
             }
         }
 
-        async Task<TDto?> PostItemAsync<TDto>(string route, TDto item) where TDto : class
+        public async Task<TDto?> PostItemAsync<TDto>(string route, TDto item) where TDto : class
                 => await PostItemAsync<TDto, TDto>(route, item);
-        async Task<TDto?> PutItemAsync<TDto>(string route, TDto item) where TDto : class
+        public async Task<TDto?> PutItemAsync<TDto>(string route, TDto item) where TDto : class
         {
             try
             {
@@ -128,7 +128,7 @@ namespace WebApiUtilisation
                 throw new WebException($"The route {route} seems to be invalid");
             }
         }
-        async Task<bool> DeleteItemAsync(string route)
+        public async Task<bool> DeleteItemAsync(string route)
         {
             try
             {
