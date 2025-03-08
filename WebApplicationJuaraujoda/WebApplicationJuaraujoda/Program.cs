@@ -41,3 +41,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug(); // Ajoutez aussi le débogage
