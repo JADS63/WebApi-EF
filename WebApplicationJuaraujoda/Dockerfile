@@ -1,40 +1,30 @@
-# -------------------------------
-# Stage 1: Build & Publish the API
-# -------------------------------
-    FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-    ARG configuration=Release
-    WORKDIR /src
-    
-    # Copy only the project files first (to leverage Docker layer caching)
-    COPY ["WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/"]
-    
-    # Copy the rest of the source code
-    COPY . .
-    
-    # Change directory to the API project folder
-    WORKDIR "/src/WebApplicationJuaraujoda/WebApplicationJuaraujoda"
-    
-    # Restore NuGet packages, build the project, and publish it
-    RUN dotnet restore "WtaApi.csproj" \
-        && dotnet build "WtaApi.csproj" -c $configuration --no-restore -o /app/build \
-        && dotnet publish "WtaApi.csproj" -c $configuration --no-restore -o /app/publish /p:UseAppHost=false
-    
-    # -------------------------------
-    # Stage 2: Create the final runtime image
-    # -------------------------------
-    FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
-    WORKDIR /app
-    
-    # Copy the published files from the build stage
-    COPY --from=build /app/publish .
-    
-    # Set environment variables
-    ENV ASPNETCORE_HTTP_PORTS=80
-    ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
-    
-    # Expose the port your API will listen on
-    EXPOSE 80
-    
-    # Define the entrypoint that runs your API
-    ENTRYPOINT ["dotnet", "WtaApi.dll"]
-    
+# Étape 1 : Build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+# Copier le fichier de projet de l’API
+COPY ["WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/"]
+# Copier l’ensemble de la solution
+COPY . .
+# Restaurer les packages pour le projet API
+RUN dotnet restore "WebApplicationJuaraujoda/WtaApi.csproj"
+WORKDIR "/src/WebApplicationJuaraujoda"
+# Compiler le projet en mode Release
+RUN dotnet build "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Étape 2 : Publication
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Étape 3 : Image d'exécution
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+WORKDIR /app
+# Exposer le port 80 (ASP.NET Core écoute sur ce port par défaut)
+EXPOSE 80
+# Optionnel : vous pouvez définir l'environnement en Production
+ENV ASPNETCORE_ENVIRONMENT=Production
+# Copier les fichiers publiés depuis l'étape de publication
+COPY --from=publish /app/publish .
+# Point d'entrée de l'application
+ENTRYPOINT ["dotnet", "WtaApi.dll"]
