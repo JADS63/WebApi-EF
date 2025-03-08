@@ -1,33 +1,17 @@
 kind: pipeline
 type: docker
-name: build-and-push
+name: CI
 
 trigger:
   event:
     - push
 
 steps:
-  - name: restore-and-build
+  - name: restore-build-publish
     image: mcr.microsoft.com/dotnet/sdk:9.0
     commands:
-      # Change directory to the folder where your solution file is located (adjust the path if needed)
       - cd WebApplicationJuaraujoda
-      # Restore NuGet packages for the solution
       - dotnet restore WebApplicationJuaraujoda.sln
-      # Build the solution in Release mode without restoring again
       - dotnet build WebApplicationJuaraujoda.sln -c Release --no-restore
-      # Publish the API project (outputs will be stored in the build directory)
-      - dotnet publish WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
-
-  - name: docker-build-and-push
-    image: plugins/docker
-    settings:
-      dockerfile: WebApplicationJuaraujoda/Dockerfile
-      context: WebApplicationJuaraujoda
-      registry: hub.codefirst.iut.uca.fr
-      repo: hub.codefirst.iut.uca.fr/my.login/myRepository  # Replace "my.login" and "myRepository" with your actual login and repository name
-      username:
-        from_secret: SECRET_REGISTRY_USERNAME
-      password:
-        from_secret: SECRET_REGISTRY_PASSWORD
-
+      # Note: Adjust the project file path to where your WtaApi.csproj actually is.
+      - dotnet publish WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
