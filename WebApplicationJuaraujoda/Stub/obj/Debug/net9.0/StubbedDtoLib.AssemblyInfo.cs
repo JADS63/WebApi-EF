@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StubbedDtoLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ce3994aa941adc6b7e01f6090d2f3d444d88bd9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b7b81d619422c25fd5151634a9034ab3fcd1825")]
 [assembly: System.Reflection.AssemblyProductAttribute("StubbedDtoLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StubbedDtoLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
