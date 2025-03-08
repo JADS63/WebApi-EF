@@ -7,7 +7,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-# Adaptez les chemins pour qu'ils correspondent à VOTRE structure:
+# Copie des fichiers .csproj individuels (pour le caching)
 COPY ["WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/WebApplicationJuaraujoda/"]
 COPY ["WebApplicationJuaraujoda/Dto/Dto.csproj", "WebApplicationJuaraujoda/Dto/"]
 COPY ["WebApplicationJuaraujoda/Services/Services.csproj", "WebApplicationJuaraujoda/Services/"]
@@ -16,10 +16,15 @@ COPY ["WebApplicationJuaraujoda/WebApiUtilisation/WebApiUtilisation.csproj", "We
 COPY ["WebApplicationJuaraujoda/Extensions/Extensions.csproj", "WebApplicationJuaraujoda/Extensions/"]
 COPY ["WebApplicationJuaraujoda/Entities/Entities.csproj", "WebApplicationJuaraujoda/Entities/"]
 COPY ["WebApplicationJuaraujoda/Tests/Tests.csproj", "WebApplicationJuaraujoda/Tests/"]
-# Copie de la solution
+# Copie du fichier de solution
 COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda.sln .
+# Restauration des dépendances
 RUN dotnet restore "WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj"
+
+# Copie de *tout* le code source (après la restauration, pour le caching)
 COPY . .
+
+# Définition du répertoire de travail pour le build
 WORKDIR "/src/WebApplicationJuaraujoda/WebApplicationJuaraujoda"
 RUN dotnet build "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
