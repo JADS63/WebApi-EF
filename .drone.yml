@@ -29,11 +29,12 @@ steps:
       dockerfile: WebApplicationJuaraujoda/Dockerfile
       context: WebApplicationJuaraujoda
       registry: hub.codefirst.iut.uca.fr
-      repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/PM2_WebAPIAndEF_araujodasilva.julien
+      repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien
       username:
         from_secret: SECRET_REGISTRY_USERNAME
       password:
         from_secret: SECRET_REGISTRY_PASSWORD
     depends_on:
       - build-and-publish
+
 
