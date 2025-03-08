@@ -1,14 +1,6 @@
-**/.env
-**/.git
-**/.gitignore
-**/.vs
-**/.vscode
-**/.idea
-**/*.*proj.user
-**/node_modules
-**/npm-debug.log
 **/bin
 **/obj
+**/node_modules
 **/wwwroot/
 **/Properties/launchSettings.json
 *.user
@@ -26,3 +18,4 @@ coverage/
 *.bak
 *.tmp
 *.swp
+.env
