@@ -15,7 +15,6 @@ steps:
       - ls -R
       - dotnet restore WebApplicationJuaraujoda.sln
       - dotnet build WebApplicationJuaraujoda.sln -c Release --no-restore
-      # Update the publish command with the correct path:
       - dotnet publish WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
       - echo "Published files:"
       - ls -R $CI_PROJECT_DIR/build/release
@@ -23,8 +22,8 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-      dockerfile: WebApplicationJuaraujoda/Dockerfile
-      context: WebApplicationJuaraujoda
+      dockerfile: WebApplicationJuaraujoda/Dockerfile  # Correct path
+      context: WebApplicationJuaraujoda  # Correct context
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien
       username:
@@ -35,21 +34,12 @@ steps:
       - build-and-publish
 
   - name: deploy-container
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest  # REQUIRED image for CodeFirst deployment
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
-      IMAGENAME: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien:latest # Your image name, with hub. prefix and :latest tag
-      CONTAINERNAME: pm2-webapi  # Choose a descriptive name.  This will be prefixed with your username.
-      COMMAND: create  #  Creates or updates the container.
-      OVERWRITE: true   #  Overwrite the container on each deployment (recommended for web APIs).
-      # Add any other environment variables your application needs here, prefixed with CODEFIRST_CLIENTDRONE_ENV_
-      # Example (if you had a database):
-      # CODEFIRST_CLIENTDRONE_ENV_DB_SERVER:
-      #   from_secret: db_server
-      # CODEFIRST_CLIENTDRONE_ENV_DB_USER:
-      #   from_secret: db_user
-      # CODEFIRST_CLIENTDRONE_ENV_DB_PASSWORD:
-      #   from_secret: db_password
-      # CODEFIRST_CLIENTDRONE_ENV_DB_DATABASE:
-      #   from_secret: db_database
+      IMAGENAME: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien:latest
+      CONTAINERNAME: pm2-webapi
+      COMMAND: create
+      OVERWRITE: true
+      # Add any other environment variables your application needs here
     depends_on:
-      - docker-build-and-push  # Ensure the image is built and pushed before deployment.
+      - docker-build-and-push

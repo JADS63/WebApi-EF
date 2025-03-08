@@ -1,30 +1,41 @@
-# Étape 1 : Build
+# Use the official .NET SDK image for building
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
+
+# Set the working directory inside the container
 WORKDIR /src
-# Copier le fichier de projet de l’API
-COPY ["WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/"]
-# Copier l’ensemble de la solution
-COPY . .
-# Restaurer les packages pour le projet API
-RUN dotnet restore "WebApplicationJuaraujoda/WtaApi.csproj"
-WORKDIR "/src/WebApplicationJuaraujoda"
-# Compiler le projet en mode Release
-RUN dotnet build "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Étape 2 : Publication
+# Copy the project files (csproj and sln) and restore dependencies *first*
+COPY WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/
+COPY WebApplicationJuaraujoda/*.sln ./
+RUN dotnet restore WebApplicationJuaraujoda/WtaApi.csproj
+
+# Copy the entire source code
+COPY WebApplicationJuaraujoda/ WebApplicationJuaraujoda/
+
+# Build the application in Release mode
+WORKDIR /src/WebApplicationJuaraujoda
+RUN dotnet build WtaApi.csproj -c Release --no-restore
+
+# Publish the application
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish WtaApi.csproj -c Release --no-restore -o /app/publish
 
-# Étape 3 : Image d'exécution
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+# Use the ASP.NET Core runtime image for the final image
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+
+# Set the working directory
 WORKDIR /app
-# Exposer le port 80 (ASP.NET Core écoute sur ce port par défaut)
-EXPOSE 80
-# Optionnel : vous pouvez définir l'environnement en Production
-ENV ASPNETCORE_ENVIRONMENT=Production
-# Copier les fichiers publiés depuis l'étape de publication
+
+# Copy the published output from the publish stage
 COPY --from=publish /app/publish .
-# Point d'entrée de l'application
+
+# Expose port 8080 (IMPORTANT: Consistent with ASPNETCORE_HTTP_PORTS)
+EXPOSE 8080
+
+# Set environment variables
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_HTTP_PORTS=8080  # CRUCIAL: Tell ASP.NET Core which port to use
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+
+# Define the entry point to run the application
 ENTRYPOINT ["dotnet", "WtaApi.dll"]
