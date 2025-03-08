@@ -3,7 +3,6 @@ using Moq;
 using WebApplicationJuaraujoda.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Entities;
-using WtaApi.Mappers;
 using Dto;
 using System;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -25,85 +24,77 @@ namespace WebApplicationJuaraujoda.Tests
         }
 
         [Fact]
-        public async Task PostPlayer_ReturnsCreatedAtActionResult_WithCreatedPlayerDto()
+        public async Task AddPlayer_ReturnsCreatedAtActionResult_WithCreatedPlayer()
         {
-            // Arrange
-            var newPlayerDto = new PlayerDto
+            // Arrange : création d'une entité Player (car le contrôleur AddPlayer attend une Player)
+            var newPlayer = new Player
             {
-                Id = 0, // l'ID est ignoré lors de la création
+                Id = 0, // l'ID sera attribué par le service
                 FirstName = "Jelena",
                 LastName = "Ostapenko",
                 Height = 1.77,
                 BirthDate = new DateTime(1997, 6, 8),
-                HandPlay = Dto.HandPlay.Right,
+                HandPlay = HandPlay.Right,
                 Nationality = "Latvia"
             };
 
             var createdPlayer = new Player
             {
-                Id = 51,
-                FirstName = newPlayerDto.FirstName,
-                LastName = newPlayerDto.LastName,
-                Height = newPlayerDto.Height,
-                BirthDate = newPlayerDto.BirthDate,
-                HandPlay = Entities.HandPlay.Right,
-                Nationality = newPlayerDto.Nationality
+                Id = 100,
+                FirstName = newPlayer.FirstName,
+                LastName = newPlayer.LastName,
+                Height = newPlayer.Height,
+                BirthDate = newPlayer.BirthDate,
+                HandPlay = newPlayer.HandPlay,
+                Nationality = newPlayer.Nationality
             };
 
             _mockService.Setup(s => s.AddPlayerAsync(It.IsAny<Player>())).ReturnsAsync(createdPlayer);
 
-            // Act
-            var result = await _controller.PostPlayer(newPlayerDto);
+            // Act : on appelle l'action AddPlayer du contrôleur
+            var result = await _controller.AddPlayer(newPlayer);
             var createdAtResult = result as CreatedAtActionResult;
 
             // Assert
             Assert.NotNull(createdAtResult);
             Assert.Equal(nameof(PlayersController.GetPlayerById), createdAtResult.ActionName);
-            var returnedDto = createdAtResult.Value as PlayerDto;
-            Assert.NotNull(returnedDto);
-            Assert.Equal(51, returnedDto.Id);
+            // On extrait l'objet retourné dans "result"
+            dynamic value = createdAtResult.Value;
+            Player returnedPlayer = value.result as Player;
+            Assert.NotNull(returnedPlayer);
+            Assert.Equal(100, returnedPlayer.Id);
         }
 
         [Fact]
-        public async Task PutPlayer_ReturnsOkResult_WithUpdatedPlayerDto()
+        public async Task UpdatePlayer_ReturnsOkResult_WithUpdatedPlayer()
         {
             // Arrange
             int id = 51;
-            var updatedPlayerDto = new PlayerDto
+            var updatedPlayer = new Player
             {
-                Id = 0, // l'ID est ignoré dans le DTO lors de la mise à jour
+                Id = id,
                 FirstName = "Beatriz",
                 LastName = "Hadda Maia",
                 Height = 1.85,
                 BirthDate = new DateTime(1996, 5, 30),
-                HandPlay = Dto.HandPlay.Left,
+                HandPlay = HandPlay.Left,
                 Nationality = "Brazil"
-            };
-
-            var updatedPlayer = new Player
-            {
-                Id = id,
-                FirstName = updatedPlayerDto.FirstName,
-                LastName = updatedPlayerDto.LastName,
-                Height = updatedPlayerDto.Height,
-                BirthDate = updatedPlayerDto.BirthDate,
-                HandPlay = Entities.HandPlay.Left,
-                Nationality = updatedPlayerDto.Nationality
             };
 
             _mockService.Setup(s => s.UpdatePlayerAsync(id, It.IsAny<Player>())).ReturnsAsync(updatedPlayer);
 
-            // Act
-            var result = await _controller.PutPlayer(id, updatedPlayerDto);
+            // Act : appel de l'action UpdatePlayer du contrôleur
+            var result = await _controller.UpdatePlayer(id, updatedPlayer);
             var okResult = result as OkObjectResult;
 
             // Assert
             Assert.NotNull(okResult);
-            var returnedDto = okResult.Value as PlayerDto;
-            Assert.NotNull(returnedDto);
-            Assert.Equal(id, returnedDto.Id);
-            Assert.Equal("Beatriz", returnedDto.FirstName);
-            Assert.Equal("Hadda Maia", returnedDto.LastName);
+            dynamic value = okResult.Value;
+            Player returnedPlayer = value.result as Player;
+            Assert.NotNull(returnedPlayer);
+            Assert.Equal(id, returnedPlayer.Id);
+            Assert.Equal("Beatriz", returnedPlayer.FirstName);
+            Assert.Equal("Hadda Maia", returnedPlayer.LastName);
         }
     }
 }

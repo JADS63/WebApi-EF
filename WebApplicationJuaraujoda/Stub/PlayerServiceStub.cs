@@ -20,7 +20,7 @@ namespace Services
 
         public class PlayerServiceStub : IPlayerService
         {
-            private readonly List<Player> _players;
+            public  List<Player> _players;
 
             public PlayerServiceStub()
             {

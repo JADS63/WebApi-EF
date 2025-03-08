@@ -58,3 +58,4 @@ C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuarau
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net9.0\WtaApi.pdb
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net9.0\WtaApi.genruntimeconfig.cache
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net9.0\ref\WtaApi.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApplicationJuaraujoda\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
