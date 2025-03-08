@@ -34,7 +34,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty; // Sert l'UI à la racine (/)
 });
 
-app.UseHttpsRedirection(); 
+app.UseHttpsRedirection(); // Décommentez pour CodeFirst
 
 app.UseRouting();
 app.UseAuthorization();
