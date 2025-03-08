@@ -26,8 +26,8 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-      dockerfile: Dockerfile
-      context: .
+      dockerfile: WebApplicationJuaraujoda/Dockerfile
+      context: WebApplicationJuaraujoda
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/PM2_WebAPIAndEF_araujodasilva.julien
       username:
@@ -36,3 +36,4 @@ steps:
         from_secret: SECRET_REGISTRY_PASSWORD
     depends_on:
       - build-and-publish
+
