@@ -4,16 +4,16 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 # Set the working directory inside the container
 WORKDIR /src
 
-# Copy the project file and restore dependencies *first*
-COPY WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/
+# Copy the project file and restore dependencies *first* (CORRECTED PATH)
+COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/WebApplicationJuaraujoda/
 COPY *.sln ./  # Copy the solution file from the repository root
-RUN dotnet restore WebApplicationJuaraujoda/WtaApi.csproj
+RUN dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
 
-# Copy the entire source code
+# Copy the entire source code (CORRECTED PATH)
 COPY WebApplicationJuaraujoda/ WebApplicationJuaraujoda/
 
 # Build the application in Release mode
-WORKDIR /src/WebApplicationJuaraujoda
+WORKDIR /src/WebApplicationJuaraujoda/WebApplicationJuaraujoda # WORKDIR includes subfolder
 RUN dotnet build WtaApi.csproj -c Release --no-restore
 
 # Publish the application
@@ -38,4 +38,4 @@ ENV ASPNETCORE_HTTP_PORTS=8080
 ENV DOTNET_RUNNING_IN_CONTAINER=true
 
 # Define the entry point to run the application
-ENTRYPOINT ["dotnet", "WtaApi.dll"]
+ENTRYPOINT ["dotnet", "WtaApi.csproj"]
