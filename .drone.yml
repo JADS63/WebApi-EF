@@ -13,8 +13,8 @@ steps:
       - cd WebApplicationJuaraujoda
       - echo "Directory structure (root of WebApplicationJuaraujoda):"
       - ls -R
-      - dotnet restore WebApplicationJuaraujoda.sln
-      - dotnet build WebApplicationJuaraujoda.sln -c Release --no-restore
+      - dotnet restore WtaApi.csproj  # Restore using the project file
+      - dotnet build WtaApi.csproj -c Release --no-restore # Build the project
       - dotnet publish WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
       - echo "Published files:"
       - ls -R $CI_PROJECT_DIR/build/release
@@ -22,8 +22,8 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-      dockerfile: WebApplicationJuaraujoda/Dockerfile  # Correct path
-      context: WebApplicationJuaraujoda  # Correct context
+      dockerfile: WebApplicationJuaraujoda/Dockerfile
+      context: .  # IMPORTANT: Change context to the repository root
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien
       username:
