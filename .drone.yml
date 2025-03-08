@@ -10,20 +10,19 @@ steps:
   - name: build-and-publish
     image: mcr.microsoft.com/dotnet/sdk:9.0
     commands:
-      # Utiliser les chemins complets et corrects, en tenant compte du sous-dossier
       - echo "Directory structure (root of repository):"
       - ls -R
-      - dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj  # Chemin correct
-      - dotnet build WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore  # Chemin correct
-      - dotnet publish WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o ./build/release # Chemin correct, sortie relative
+      - dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
+      - dotnet build WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore
+      - dotnet publish WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o ./build/release
       - echo "Published files:"
       - ls -R ./build/release
 
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-      dockerfile: WebApplicationJuaraujoda/Dockerfile  # Ce chemin est correct
-      context: .  # La racine du dépôt est le contexte
+      dockerfile: WebApplicationJuaraujoda/Dockerfile
+      context: .
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien
       username:
@@ -40,6 +39,7 @@ steps:
       CONTAINERNAME: pm2-webapi
       COMMAND: create
       OVERWRITE: true
-      # Add any other environment variables your application needs here
+      # URL de base de l'API sur CodeFirst (AVEC HTTPS et le chemin complet)
+      CODEFIRST_CLIENTDRONE_ENV_API_BASE_URL: https://julienaraujo_da_silva-pm2-webapi.apps.codefirst.iut.uca.fr/api/v1/Players
     depends_on:
       - docker-build-and-push

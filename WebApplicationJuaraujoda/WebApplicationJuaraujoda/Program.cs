@@ -65,8 +65,7 @@ app.UseSwaggerUI(c =>  // Swashbuckle (pour l'UI)
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); // Utilise le document généré par NSwag
     c.RoutePrefix = string.Empty; // Sert l'UI à la racine (/)
 });
-
-// app.UseHttpsRedirection(); // Décommentez sur CodeFirst
+app.UseHttpsRedirection(); 
 
 app.UseRouting();
 app.UseAuthorization();
