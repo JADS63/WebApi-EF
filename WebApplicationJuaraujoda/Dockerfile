@@ -6,9 +6,7 @@ WORKDIR /src
 
 # Copy the project file and restore dependencies *first*
 COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/WebApplicationJuaraujoda/
-
-# Copy *everything* (including the .sln)
-COPY . .
+COPY . .  # Copy everything (including the .sln)
 
 # Restore dependencies
 RUN dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
