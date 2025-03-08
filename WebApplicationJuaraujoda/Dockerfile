@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 # Set the working directory inside the container
 WORKDIR /src
 
-# Copy the project files (csproj and sln) and restore dependencies *first*
+# Copy the project file and restore dependencies *first* (Corrected COPY)
 COPY WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/
 COPY WebApplicationJuaraujoda/*.sln ./
 RUN dotnet restore WebApplicationJuaraujoda/WtaApi.csproj
@@ -29,12 +29,12 @@ WORKDIR /app
 # Copy the published output from the publish stage
 COPY --from=publish /app/publish .
 
-# Expose port 8080 (IMPORTANT: Consistent with ASPNETCORE_HTTP_PORTS)
+# Expose port 8080 (Consistent with ASPNETCORE_HTTP_PORTS)
 EXPOSE 8080
 
 # Set environment variables
 ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_HTTP_PORTS=8080  # CRUCIAL: Tell ASP.NET Core which port to use
+ENV ASPNETCORE_HTTP_PORTS=8080
 ENV DOTNET_RUNNING_IN_CONTAINER=true
 
 # Define the entry point to run the application
