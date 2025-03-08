@@ -1,159 +1,182 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Net;
-using System.Text.Json;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace WebApiUtilisation
 {
     public class ConsommationWebApi
     {
-        HttpClient Client { get; set; } = new HttpClient();
+        public HttpClient Client { get; set; } = new HttpClient();
 
         public async Task<T?> GetFromRoute<T>(string route)
         {
             try
             {
+                Debug.WriteLine($"[GET] Début de la requête vers : {route}");
                 Uri uri = new Uri(route, UriKind.RelativeOrAbsolute);
-
-                T? item = default;
                 HttpResponseMessage response = await Client.GetAsync(uri);
-                if (response.StatusCode == HttpStatusCode.OK)
+                Debug.WriteLine($"[GET] Statut HTTP reçu : {response.StatusCode}");
+                if (!response.IsSuccessStatusCode)
                 {
-                    string content = await response.Content.ReadAsStringAsync();
-                    var serializerOptions = new JsonSerializerOptions
-                    {
-                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                        WriteIndented = true
-                    };
-                    item = JsonSerializer.Deserialize<T>(content, serializerOptions);
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"[GET] Erreur HTTP. Contenu : {errorContent}");
+                    throw new WebException($"Request failed with status code {response.StatusCode} for route {route}");
                 }
-                return item;
+                string content = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine($"[GET] Contenu brut : {content}");
+                string trimmedContent = content.Trim();
+                Debug.WriteLine($"[GET] Contenu après trim : {trimmedContent}");
+
+                // Si T est une collection et que le contenu semble vide ou ne contient pas "result"
+                if (IsCollectionType(typeof(T)) &&
+                    (string.IsNullOrWhiteSpace(trimmedContent) ||
+                     trimmedContent == "{}" ||
+                     (trimmedContent.StartsWith("{") && !trimmedContent.ToLower().Contains("\"result\""))))
+                {
+                    Debug.WriteLine("[GET] Le contenu est remplacé par '[]' car il semble vide pour un type collection.");
+                    content = "[]";
+                }
+
+                var serializerOptions = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    WriteIndented = true
+                };
+
+                T? result = JsonSerializer.Deserialize<T>(content, serializerOptions);
+                if (result == null)
+                {
+                    Debug.WriteLine("[GET] La désérialisation a retourné null.");
+                    throw new WebException($"Deserialization returned null for route {route}");
+                }
+                Debug.WriteLine($"[GET] Désérialisation réussie. Type : {typeof(T)}");
+                return result;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new WebException($"The route {route} seems to be invalid");
+                Debug.WriteLine($"[GET] Exception : {ex}");
+                throw new WebException($"Error when accessing route {route}: {ex.Message}");
             }
         }
 
-        public async Task<TOutputDto?> PostItemAsync<TInputDto, TOutputDto>(string route, TInputDto item) where TInputDto : class where TOutputDto : class
+        private bool IsCollectionType(Type type)
+        {
+            return type != typeof(string) && typeof(System.Collections.IEnumerable).IsAssignableFrom(type);
+        }
+
+        public async Task<TOutputDto?> PostItemAsync<TInputDto, TOutputDto>(string route, TInputDto item)
+            where TInputDto : class
+            where TOutputDto : class
         {
             try
             {
-                Uri uri = new Uri($"{route}", UriKind.RelativeOrAbsolute);
+                Debug.WriteLine($"[POST] Début de la requête POST vers : {route} avec un objet de type {typeof(TInputDto)}");
+                Uri uri = new Uri(route, UriKind.RelativeOrAbsolute);
                 var serializerOptions = new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                     WriteIndented = true
                 };
                 string json = JsonSerializer.Serialize<TInputDto>(item, serializerOptions);
+                Debug.WriteLine($"[POST] JSON sérialisé : {json}");
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 HttpResponseMessage response = await Client.PostAsync(uri, content);
-
+                Debug.WriteLine($"[POST] Statut HTTP reçu : {response.StatusCode}");
                 if (!response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine($"Item of type {item.GetType()} not saved!");
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.BadRequest:
-                            throw new WebException($"Bad Request - route: {route}");
-                        case HttpStatusCode.Unauthorized:
-                            throw new WebException($"Unauthorized - route: {route}");
-                    }
-                    return null;
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"[POST] Erreur HTTP : {errorContent}");
+                    throw new WebException($"POST failed with status {response.StatusCode} for route {route}");
                 }
-
-                Debug.WriteLine($"Item of type {item.GetType()} successfully saved.");
-
                 string stringContent = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine($"[POST] Contenu de la réponse : {stringContent}");
                 try
                 {
                     TOutputDto? data = JsonSerializer.Deserialize<TOutputDto>(stringContent, serializerOptions);
+                    Debug.WriteLine("[POST] Désérialisation réussie.");
                     return data;
                 }
-                catch (JsonException)
+                catch (JsonException jsonEx)
                 {
-                    Debug.WriteLine("Problem during Json deserialization");
+                    Debug.WriteLine($"[POST] Erreur de désérialisation JSON : {jsonEx}");
                     return null;
                 }
             }
             catch (Exception exc)
             {
-                Debug.WriteLine(exc.Message);
-                throw new WebException($"The route {route} seems to be invalid");
+                Debug.WriteLine($"[POST] Exception : {exc.Message}");
+                throw new WebException($"Error in POST at route {route}: {exc.Message}");
             }
         }
 
         public async Task<TDto?> PostItemAsync<TDto>(string route, TDto item) where TDto : class
-                => await PostItemAsync<TDto, TDto>(route, item);
-        public async Task<TDto?> PutItemAsync<TDto>(string route, TDto item) where TDto : class
+            => await PostItemAsync<TDto, TDto>(route, item);
+
+        public async Task<TOutputDto?> PutItemAsync<TInputDto, TOutputDto>(string route, TInputDto item)
+            where TInputDto : class
+            where TOutputDto : class
         {
             try
             {
-                Uri uri = new Uri($"{route}", UriKind.RelativeOrAbsolute);
+                Debug.WriteLine($"[PUT] Début de la requête PUT vers : {route} avec un objet de type {typeof(TInputDto)}");
+                Uri uri = new Uri(route, UriKind.RelativeOrAbsolute);
                 var serializerOptions = new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                     WriteIndented = true
                 };
-
-                StringContent content = null!;
-
-                if (item != null)
-                {
-                    string json = JsonSerializer.Serialize<TDto>(item, serializerOptions);
-                    content = new StringContent(json, Encoding.UTF8, "application/json");
-                }
+                string json = JsonSerializer.Serialize<TInputDto>(item, serializerOptions);
+                Debug.WriteLine($"[PUT] JSON sérialisé : {json}");
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await Client.PutAsync(uri, content);
-
+                Debug.WriteLine($"[PUT] Statut HTTP reçu : {response.StatusCode}");
                 if (!response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine($"\tItem (of type {item?.GetType()} not saved!");
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.Unauthorized:
-                            throw new WebException($"Unauthorized - route: {route}");
-                    }
-                    return null;
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"[PUT] Erreur HTTP : {errorContent}");
+                    throw new WebException($"PUT failed with status {response.StatusCode} for route {route}");
                 }
-
-                Debug.WriteLine(@"\tItem (of type {item.GetType()} successfully saved.");
-
                 string stringContent = await response.Content.ReadAsStringAsync();
-                TDto? addedData = JsonSerializer.Deserialize<TDto>(stringContent, serializerOptions);
-                return addedData;
+                Debug.WriteLine($"[PUT] Contenu de la réponse : {stringContent}");
+                TOutputDto? data = JsonSerializer.Deserialize<TOutputDto>(stringContent, serializerOptions);
+                Debug.WriteLine("[PUT] Désérialisation réussie.");
+                return data;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new WebException($"The route {route} seems to be invalid");
+                Debug.WriteLine($"[PUT] Exception : {ex}");
+                throw new WebException($"Error in PUT at route {route}: {ex.Message}");
             }
         }
+
+        public async Task<TDto?> PutItemAsync<TDto>(string route, TDto item) where TDto : class
+            => await PutItemAsync<TDto, TDto>(route, item);
+
         public async Task<bool> DeleteItemAsync(string route)
         {
             try
             {
-                Uri uri = new Uri($"{route}", UriKind.RelativeOrAbsolute);
-
+                Debug.WriteLine($"[DELETE] Début de la requête DELETE vers : {route}");
+                Uri uri = new Uri(route, UriKind.RelativeOrAbsolute);
                 HttpResponseMessage response = await Client.DeleteAsync(uri);
-
+                Debug.WriteLine($"[DELETE] Statut HTTP reçu : {response.StatusCode}");
                 if (!response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine($"\tItem not deleted!");
-                    switch (response.StatusCode)
-                    {
-                        case HttpStatusCode.Unauthorized:
-                            throw new WebException($"Unauthorized - route: {route}");
-                    }
-                    return false;
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"[DELETE] Erreur HTTP : {errorContent}");
+                    throw new WebException($"DELETE failed with status {response.StatusCode} for route {route}");
                 }
-
-                Debug.WriteLine(@"\tItem successfully deleted.");
-
+                Debug.WriteLine("[DELETE] Requête DELETE réussie.");
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
-                throw new WebException($"The route {route} seems to be invalid");
+                Debug.WriteLine($"[DELETE] Exception : {ex}");
+                throw new WebException($"Error in DELETE at route {route}: {ex.Message}");
             }
         }
     }

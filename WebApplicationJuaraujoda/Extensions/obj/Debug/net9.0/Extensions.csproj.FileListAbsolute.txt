@@ -1,0 +1,17 @@
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Extensions.deps.json
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Extensions.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Extensions.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Dto.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Entities.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Dto.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\bin\Debug\net9.0\Entities.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.csproj.AssemblyReference.cache
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.AssemblyInfoInputs.cache
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.AssemblyInfo.cs
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.csproj.CoreCompileInputs.cache
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.csproj.Up2Date
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\refint\Extensions.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\Extensions.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\Extensions\obj\Debug\net9.0\ref\Extensions.dll

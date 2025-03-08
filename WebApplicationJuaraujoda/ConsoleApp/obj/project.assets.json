@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net9.0": {
       "Microsoft.AspNetCore.Http.Abstractions/2.3.0": {
         "type": "package",
         "dependencies": {
@@ -134,7 +134,7 @@
       },
       "Dto/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "compile": {
           "bin/placeholder/Dto.dll": {}
         },
@@ -144,7 +144,7 @@
       },
       "Entities/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "compile": {
           "bin/placeholder/Entities.dll": {}
         },
@@ -154,7 +154,7 @@
       },
       "Extensions/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dto": "1.0.0",
           "Entities": "1.0.0"
@@ -168,7 +168,7 @@
       },
       "Shared/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dto": "1.0.0",
           "Entities": "1.0.0",
@@ -183,9 +183,24 @@
           "bin/placeholder/Shared.dll": {}
         }
       },
+      "StubbedDtoLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Dto": "1.0.0",
+          "Entities": "1.0.0",
+          "Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/StubbedDtoLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StubbedDtoLib.dll": {}
+        }
+      },
       "WebApiUtilisation/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
+        "framework": ".NETCoreApp,Version=v9.0",
         "compile": {
           "bin/placeholder/WebApiUtilisation.dll": {}
         },
@@ -366,6 +381,11 @@
       "path": "../Services/Shared.csproj",
       "msbuildProject": "../Services/Shared.csproj"
     },
+    "StubbedDtoLib/1.0.0": {
+      "type": "project",
+      "path": "../Stub/StubbedDtoLib.csproj",
+      "msbuildProject": "../Stub/StubbedDtoLib.csproj"
+    },
     "WebApiUtilisation/1.0.0": {
       "type": "project",
       "path": "../WebApiUtilisation/WebApiUtilisation.csproj",
@@ -373,10 +393,11 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net9.0": [
       "Dto >= 1.0.0",
       "Entities >= 1.0.0",
       "Shared >= 1.0.0",
+      "StubbedDtoLib >= 1.0.0",
       "WebApiUtilisation >= 1.0.0"
     ]
   },
@@ -402,7 +423,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net9.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -410,8 +431,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "projectReferences": {
             "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj": {
               "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Dto\\Dto.csproj"
@@ -421,6 +442,9 @@
             },
             "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Shared.csproj": {
               "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Services\\Shared.csproj"
+            },
+            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj": {
+              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Stub\\StubbedDtoLib.csproj"
             },
             "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj": {
               "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\WebApiUtilisation\\WebApiUtilisation.csproj"
@@ -441,8 +465,8 @@
       "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net9.0": {
+        "targetAlias": "net9.0",
         "imports": [
           "net461",
           "net462",

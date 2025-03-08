@@ -2,17 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services;
 using Entities;
-using Dto;
-using WtaApi.Mappers;
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebApplicationJuaraujoda.Controllers
 {
-    [ApiController]
     [Route("api/v1/[controller]")]
+    [ApiController]
     public class PlayersController : ControllerBase
     {
         private readonly IPlayerService _playerService;
@@ -24,188 +19,117 @@ namespace WebApplicationJuaraujoda.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Méthode privée pour créer une réponse standardisée avec conversion en DTO.
-        /// </summary>
-        private ApiResponseDto<List<PlayerDto>> CreateApiResponse(List<PlayerDto> playersDto, int responseId)
+        // GET: api/v1/Players?Index=0&Count=10&Sort=0
+        [HttpGet]
+        public async Task<IActionResult> GetPlayers([FromQuery] int Index = 0, [FromQuery] int Count = 10, [FromQuery] int Sort = 0)
         {
-            return new ApiResponseDto<List<PlayerDto>>
-            {
-                Id = responseId,
-                Result = playersDto,
-                Exception = null,
-                Status = 5,
-                IsCanceled = false,
-                IsCompleted = true,
-                IsCompletedSuccessfully = true,
-                CreationOptions = 0,
-                AsyncState = null,
-                IsFaulted = false
-            };
+            _logger.LogInformation("GetPlayers appelé avec Index={Index}, Count={Count}, Sort={Sort}", Index, Count, Sort);
+            var players = await _playerService.GetPlayersAsync(Index, Count, Sort);
+            return Ok(new { result = players });
         }
 
-        /// <summary>
-        /// GET /api/v1/players/{id}
-        /// Récupère une joueuse par son identifiant.
-        /// </summary>
-        [HttpGet("{id:int}")]
+        // GET: api/v1/Players/42
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPlayerById(int id)
         {
-            _logger.LogInformation("GetPlayerById called with id: {Id}", id);
-            var playerEntity = await _playerService.GetPlayerByIdAsync(id);
-            if (playerEntity == null)
+            _logger.LogInformation("GetPlayerById appelé pour id={id}", id);
+            var player = await _playerService.GetPlayerByIdAsync(id);
+            if (player == null)
             {
-                _logger.LogWarning("Player with id {Id} not found.", id);
-                return NotFound(new { error = "Player not found." });
+                _logger.LogWarning("Aucun joueur trouvé pour id={id}", id);
+                return NotFound(new { result = (object)null });
             }
-            var playerDto = PlayerMapper.ToDto(playerEntity);
-            return Ok(playerDto);
+            return Ok(new { result = player });
         }
 
-        /// <summary>
-        /// GET /api/v1/players
-        /// Retourne les joueuses paginées et triées si les paramètres sont fournis, sinon toutes.
-        /// Exemple : /api/v1/players?index=0&count=3&criterium=1
-        /// </summary>
-        [HttpGet]
-        public async Task<IActionResult> GetPlayers([FromQuery] PaginationDto pagination = null, [FromQuery] int? criterium = null)
-        {
-            List<PlayerDto> playersDto;
-            int responseId;
-            if (pagination != null && pagination.Index >= 0 && pagination.Count > 0 && criterium.HasValue)
-            {
-                var playersEntity = await _playerService.GetPlayersAsync(pagination.Index, pagination.Count, criterium.Value);
-                playersDto = playersEntity.Select(p => PlayerMapper.ToDto(p)).ToList();
-                responseId = 2;
-            }
-            else
-            {
-                var playersEntity = await _playerService.GetPlayersAsync();
-                playersDto = playersEntity.Select(p => PlayerMapper.ToDto(p)).ToList();
-                responseId = 1;
-            }
-            var response = CreateApiResponse(playersDto, responseId);
-            return Ok(response);
-        }
-
-        /// <summary>
-        /// GET /api/v1/players/byname?name=na&index=0&count=10&criterium=1
-        /// Récupère les joueuses dont le prénom ou le nom contient la chaîne spécifiée.
-        /// </summary>
-        [HttpGet("byname")]
-        public async Task<IActionResult> GetPlayersByName([FromQuery] string name, [FromQuery] int index, [FromQuery] int count, [FromQuery] int criterium)
-        {
-            _logger.LogInformation("GetPlayersByName called with name: {Name}, index: {Index}, count: {Count}, criterium: {Criterium}", name, index, count, criterium);
-            var playersEntity = await _playerService.GetPlayersByNameAsync(name, index, count, criterium);
-            var total = await _playerService.GetTotalCountByNameAsync(name);
-            if (playersEntity == null || !playersEntity.Any())
-            {
-                _logger.LogWarning("No players found with name containing '{Name}'.", name);
-                return NotFound(new { error = "No players found with the specified name." });
-            }
-            var playersDto = playersEntity.Select(p => PlayerMapper.ToDto(p)).ToList();
-            var response = new PaginatedResponseDto<PlayerDto>
-            {
-                TotalCount = total,
-                PageIndex = index,
-                CountPerPage = count,
-                Items = playersDto
-            };
-            _logger.LogInformation("Returning {Count} players filtered by name, total {TotalCount}.", playersDto.Count, total);
-            return Ok(response);
-        }
-
-        /// <summary>
-        /// GET /api/v1/players/bynationality?nationality=usa&index=0&count=10&criterium=1
-        /// Récupère les joueuses dont la nationalité contient la chaîne spécifiée.
-        /// </summary>
-        [HttpGet("bynationality")]
-        public async Task<IActionResult> GetPlayersByNationality([FromQuery] string nationality, [FromQuery] int index, [FromQuery] int count, [FromQuery] int criterium)
-        {
-            _logger.LogInformation("GetPlayersByNationality called with nationality: {Nationality}, index: {Index}, count: {Count}, criterium: {Criterium}", nationality, index, count, criterium);
-            var playersEntity = await _playerService.GetPlayersByNationalityAsync(nationality, index, count, criterium);
-            var total = await _playerService.GetTotalCountByNationalityAsync(nationality);
-            if (playersEntity == null || !playersEntity.Any())
-            {
-                _logger.LogWarning("No players found with nationality containing '{Nationality}'.", nationality);
-                return NotFound(new { error = "No players found with the specified nationality." });
-            }
-            var playersDto = playersEntity.Select(p => PlayerMapper.ToDto(p)).ToList();
-            var response = new PaginatedResponseDto<PlayerDto>
-            {
-                TotalCount = total,
-                PageIndex = index,
-                CountPerPage = count,
-                Items = playersDto
-            };
-            _logger.LogInformation("Returning {Count} players filtered by nationality, total {TotalCount}.", playersDto.Count, total);
-            return Ok(response);
-        }
-
-        /// <summary>
-        /// POST /api/v1/players
-        /// Ajoute une nouvelle joueuse en convertissant le DTO en entité pour le traitement.
-        /// </summary>
+        // POST: api/v1/Players
         [HttpPost]
-        public async Task<IActionResult> PostPlayer([FromBody] PlayerDto playerDto)
+        public async Task<IActionResult> AddPlayer([FromBody] Player player)
         {
-            _logger.LogInformation("PostPlayer called.");
-            if (playerDto == null)
+            _logger.LogInformation("AddPlayer appelé");
+            var addedPlayer = await _playerService.AddPlayerAsync(player);
+            if (addedPlayer == null)
             {
-                _logger.LogWarning("Invalid player data received in PostPlayer.");
-                return BadRequest(new { error = "Invalid player data." });
+                _logger.LogError("L'ajout du joueur a échoué.");
+                return BadRequest(new { result = (object)null });
             }
-            // Conversion du DTO en entité pour le traitement
-            var playerEntity = PlayerMapper.ToEntity(playerDto);
-            var createdPlayerEntity = await _playerService.AddPlayerAsync(playerEntity);
-            _logger.LogInformation("Player created with id {Id}.", createdPlayerEntity.Id);
-            // Conversion de l'entité créée en DTO pour la réponse
-            var createdPlayerDto = PlayerMapper.ToDto(createdPlayerEntity);
-            return CreatedAtAction(nameof(GetPlayerById), new { id = createdPlayerDto.Id }, createdPlayerDto);
+            _logger.LogInformation("Joueur ajouté avec id={id}", addedPlayer.Id);
+            return CreatedAtAction(nameof(GetPlayerById), new { id = addedPlayer.Id }, new { result = addedPlayer });
         }
 
-        /// <summary>
-        /// PUT /api/v1/players?id=51
-        /// Met à jour une joueuse existante en convertissant le DTO en entité pour la mise à jour.
-        /// </summary>
+        // PUT: api/v1/Players?id=50
         [HttpPut]
-        public async Task<IActionResult> PutPlayer([FromQuery] int id, [FromBody] PlayerDto playerDto)
+        public async Task<IActionResult> UpdatePlayer([FromQuery] int id, [FromBody] Player player)
         {
-            _logger.LogInformation("PutPlayer called for id {Id}.", id);
-            if (playerDto == null)
+            _logger.LogInformation("UpdatePlayer appelé pour id={id}", id);
+            var updatedPlayer = await _playerService.UpdatePlayerAsync(id, player);
+            if (updatedPlayer == null)
             {
-                _logger.LogWarning("Invalid player data received in PutPlayer.");
-                return BadRequest(new { error = "Invalid player data." });
+                _logger.LogError("La mise à jour du joueur id={id} a échoué.", id);
+                return BadRequest(new { result = (object)null });
             }
-            // Conversion du DTO en entité pour effectuer la mise à jour
-            var playerEntityForUpdate = PlayerMapper.ToEntity(playerDto);
-            var updatedPlayerEntity = await _playerService.UpdatePlayerAsync(id, playerEntityForUpdate);
-            if (updatedPlayerEntity == null)
-            {
-                _logger.LogWarning("Player with id {Id} not found for update.", id);
-                return NotFound(new { error = "Player not found." });
-            }
-            _logger.LogInformation("Player with id {Id} updated successfully.", id);
-            var updatedPlayerDto = PlayerMapper.ToDto(updatedPlayerEntity);
-            return Ok(updatedPlayerDto);
+            _logger.LogInformation("Joueur id={id} mis à jour.", id);
+            return Ok(new { result = updatedPlayer });
         }
 
-        /// <summary>
-        /// DELETE /api/v1/players?id=51
-        /// Supprime une joueuse existante.
-        /// </summary>
-        [HttpDelete]
-        public async Task<IActionResult> DeletePlayer([FromQuery] int id)
+        // DELETE: api/v1/Players/50
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePlayer(int id)
         {
-            _logger.LogInformation("DeletePlayer called for id {Id}.", id);
-            var deleted = await _playerService.DeletePlayerAsync(id);
-            if (!deleted)
+            _logger.LogInformation("DeletePlayer appelé pour id={id}", id);
+            bool success = await _playerService.DeletePlayerAsync(id);
+            if (!success)
             {
-                _logger.LogWarning("Player with id {Id} not found for deletion.", id);
-                return NotFound(new { error = "Player not found." });
+                _logger.LogError("La suppression du joueur id={id} a échoué.", id);
+                return BadRequest(new { result = false });
             }
-            _logger.LogInformation("Player with id {Id} deleted successfully.", id);
-            return NoContent();
+            _logger.LogInformation("Joueur id={id} supprimé.", id);
+            return Ok(new { result = true });
+        }
+
+        // GET: api/v1/Players/TotalCount
+        [HttpGet("TotalCount")]
+        public async Task<IActionResult> GetTotalCount()
+        {
+            _logger.LogInformation("GetTotalCount appelé");
+            int count = await _playerService.GetTotalCountAsync();
+            return Ok(new { result = count });
+        }
+
+        // GET: api/v1/Players/TotalCountByName?name=John
+        [HttpGet("TotalCountByName")]
+        public async Task<IActionResult> GetTotalCountByName([FromQuery] string name)
+        {
+            _logger.LogInformation("GetTotalCountByName appelé pour name={name}", name);
+            int count = await _playerService.GetTotalCountByNameAsync(name);
+            return Ok(new { result = count });
+        }
+
+        // GET: api/v1/Players/TotalCountByNationality?nationality=USA
+        [HttpGet("TotalCountByNationality")]
+        public async Task<IActionResult> GetTotalCountByNationality([FromQuery] string nationality)
+        {
+            _logger.LogInformation("GetTotalCountByNationality appelé pour nationality={nationality}", nationality);
+            int count = await _playerService.GetTotalCountByNationalityAsync(nationality);
+            return Ok(new { result = count });
+        }
+
+        // GET: api/v1/Players/byName?name=John&Index=0&Count=10&Sort=0
+        [HttpGet("byName")]
+        public async Task<IActionResult> GetPlayersByName([FromQuery] string name, [FromQuery] int Index = 0, [FromQuery] int Count = 10, [FromQuery] int Sort = 0)
+        {
+            _logger.LogInformation("GetPlayersByName appelé pour name={name}, Index={Index}, Count={Count}, Sort={Sort}", name, Index, Count, Sort);
+            var players = await _playerService.GetPlayersByNameAsync(name, Index, Count, Sort);
+            return Ok(new { result = players });
+        }
+
+        // GET: api/v1/Players/byNationality?nationality=USA&Index=0&Count=10&Sort=0
+        [HttpGet("byNationality")]
+        public async Task<IActionResult> GetPlayersByNationality([FromQuery] string nationality, [FromQuery] int Index = 0, [FromQuery] int Count = 10, [FromQuery] int Sort = 0)
+        {
+            _logger.LogInformation("GetPlayersByNationality appelé pour nationality={nationality}, Index={Index}, Count={Count}, Sort={Sort}", nationality, Index, Count, Sort);
+            var players = await _playerService.GetPlayersByNationalityAsync(nationality, Index, Count, Sort);
+            return Ok(new { result = players });
         }
     }
 }

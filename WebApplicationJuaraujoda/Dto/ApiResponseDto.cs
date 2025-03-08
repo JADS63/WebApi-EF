@@ -1,9 +1,5 @@
 ﻿namespace Dto
 {
-    /// <summary>
-    /// DTO pour la réponse d'une API.
-    /// </summary>
-    /// <typeparam name="T">Type du résultat retourné.</typeparam>
     public class ApiResponseDto<T>
     {
         public T Result { get; set; }
