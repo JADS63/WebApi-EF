@@ -4,13 +4,14 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 # Set the working directory inside the container
 WORKDIR /src
 
-# Copy the project file and restore dependencies *first* (CORRECTED PATH)
+# Copy the project file *first*
 COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/WebApplicationJuaraujoda/
-COPY * ./sln ./
-RUN dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
 
-# Copy the entire source code (CORRECTED PATH)
-COPY WebApplicationJuaraujoda/ WebApplicationJuaraujoda/
+# Copy *everything* (including the .sln)
+COPY . .
+
+# Restore dependencies (using the correct path to the .csproj)
+RUN dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
 
 # Build the application in Release mode
 WORKDIR /src/WebApplicationJuaraujoda/WebApplicationJuaraujoda
