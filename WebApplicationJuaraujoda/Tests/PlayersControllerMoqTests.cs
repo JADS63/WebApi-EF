@@ -3,7 +3,6 @@ using Moq;
 using WebApplicationJuaraujoda.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Entities;
-using Dto;
 using System;
 using Microsoft.Extensions.Logging.Abstractions;
 using Services;
@@ -26,15 +25,17 @@ namespace WebApplicationJuaraujoda.Tests
         [Fact]
         public async Task AddPlayer_ReturnsCreatedAtActionResult_WithCreatedPlayer()
         {
-            // Arrange : création d'une entité Player (car le contrôleur AddPlayer attend une Player)
+            // Arrange
+            // Création d'une entité Player pour simuler l'ajout (le contrôleur attend une Player, pas un DTO)
             var newPlayer = new Player
             {
-                Id = 0, // l'ID sera attribué par le service
+                // L'ID est ignoré lors de la création
                 FirstName = "Jelena",
                 LastName = "Ostapenko",
                 Height = 1.77,
                 BirthDate = new DateTime(1997, 6, 8),
-                HandPlay = HandPlay.Right,
+                // Ici, nous utilisons Entities.HandPlay pour lever l'ambiguïté
+                HandPlay = Entities.HandPlay.Right,
                 Nationality = "Latvia"
             };
 
@@ -51,14 +52,14 @@ namespace WebApplicationJuaraujoda.Tests
 
             _mockService.Setup(s => s.AddPlayerAsync(It.IsAny<Player>())).ReturnsAsync(createdPlayer);
 
-            // Act : on appelle l'action AddPlayer du contrôleur
+            // Act : appel de l'action AddPlayer du contrôleur
             var result = await _controller.AddPlayer(newPlayer);
             var createdAtResult = result as CreatedAtActionResult;
 
             // Assert
             Assert.NotNull(createdAtResult);
             Assert.Equal(nameof(PlayersController.GetPlayerById), createdAtResult.ActionName);
-            // On extrait l'objet retourné dans "result"
+            // Extraction de l'objet retourné dans "result"
             dynamic value = createdAtResult.Value;
             Player returnedPlayer = value.result as Player;
             Assert.NotNull(returnedPlayer);
@@ -77,7 +78,7 @@ namespace WebApplicationJuaraujoda.Tests
                 LastName = "Hadda Maia",
                 Height = 1.85,
                 BirthDate = new DateTime(1996, 5, 30),
-                HandPlay = HandPlay.Left,
+                HandPlay = Entities.HandPlay.Left,
                 Nationality = "Brazil"
             };
 
