@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 namespace WtaApi.Mappers
 {
-    /// <summary>
-    /// Fournit des méthodes pour convertir entre PaginatedResponse et PaginatedResponseDto.
-    /// </summary>
     public static class PaginatedResponseMapper
     {
         public static PaginatedResponseDto<T> ToDto<T>(PaginatedResponse<T> paginatedResponse)

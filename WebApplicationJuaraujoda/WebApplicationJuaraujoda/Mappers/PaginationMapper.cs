@@ -3,9 +3,6 @@ using Entities;
 
 namespace WtaApi.Mappers
 {
-    /// <summary>
-    /// Fournit des méthodes pour convertir entre Pagination et PaginationDto.
-    /// </summary>
     public static class PaginationMapper
     {
         public static PaginationDto ToDto(Pagination pagination)

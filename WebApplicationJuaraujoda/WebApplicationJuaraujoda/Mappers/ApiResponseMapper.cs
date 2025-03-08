@@ -1,11 +1,7 @@
 ﻿using Dto;
 using Entities;
-
 namespace WtaApi.Mappers
 {
-    /// <summary>
-    /// Fournit des méthodes pour transformer une ApiResponse en ApiResponseDto et inversement.
-    /// </summary>
     public static class ApiResponseMapper
     {
         public static ApiResponseDto<T> ToDto<T>(ApiResponse<T> apiResponse)

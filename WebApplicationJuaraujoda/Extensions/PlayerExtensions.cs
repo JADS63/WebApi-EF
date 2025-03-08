@@ -14,7 +14,8 @@ namespace Extensions
                 LastName = dto.LastName,
                 BirthDate = dto.BirthDate,
                 Height = dto.Height,
-                Nationality = dto.Nationality
+                Nationality = dto.Nationality,
+                HandPlay = (Entities.HandPlay)dto.HandPlay
             };
         }
 
@@ -28,7 +29,7 @@ namespace Extensions
                 BirthDate = player.BirthDate,
                 Height = player.Height,
                 Nationality = player.Nationality,
-                HandPlay = Dto.HandPlay.None 
+                HandPlay = (Entities.HandPlay)player.HandPlay
             };
         }
     }

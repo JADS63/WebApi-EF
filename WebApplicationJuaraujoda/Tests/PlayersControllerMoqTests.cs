@@ -8,6 +8,8 @@ using Services;
 using Entities;
 using WebApplicationJuaraujoda.Controllers;
 using System.Threading.Tasks;
+using Dto;
+using WtaApi.Mappers;
 
 namespace WebApplicationJuaraujoda.Tests
 {
@@ -22,77 +24,151 @@ namespace WebApplicationJuaraujoda.Tests
             _controller = new PlayersController(_mockService.Object, NullLogger<PlayersController>.Instance);
         }
 
+
         [Fact]
-        public async Task AddPlayer_ReturnsCreatedAtActionResult_WithCreatedPlayer()
+        public async Task GetPlayerById_ExistingId_ReturnsOkResultWithPlayerDto()
         {
             // Arrange
-            var newPlayer = new Player
-            {
-                // When creating a new player, the incoming ID is ignored.
-                Id = 0,
-                FirstName = "Jelena",
-                LastName = "Ostapenko",
-                Height = 1.77,
-                BirthDate = new DateTime(1997, 6, 8),
-                // Use Entities.HandPlay to avoid ambiguity
-                HandPlay = Entities.HandPlay.Right,
-                Nationality = "Latvia"
-            };
-
-            var createdPlayer = new Player
-            {
-                Id = 51,
-                FirstName = newPlayer.FirstName,
-                LastName = newPlayer.LastName,
-                Height = newPlayer.Height,
-                BirthDate = newPlayer.BirthDate,
-                HandPlay = newPlayer.HandPlay,
-                Nationality = newPlayer.Nationality
-            };
-
-            _mockService.Setup(s => s.AddPlayerAsync(It.IsAny<Player>())).ReturnsAsync(createdPlayer);
+            var mockService = new Mock<IPlayerService>();
+            var expectedPlayer = new Player { Id = 1, FirstName = "Test", LastName = "Player", Nationality = "Test", BirthDate = DateTime.Now, Height = 1.8, HandPlay = Entities.HandPlay.Right };
+            mockService.Setup(service => service.GetPlayerByIdAsync(1)).ReturnsAsync(expectedPlayer);
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
 
             // Act
-            var result = await _controller.AddPlayer(newPlayer);
-            var createdAtResult = result as CreatedAtActionResult;
+            var result = await controller.GetPlayerById(1);
 
             // Assert
-            Assert.NotNull(createdAtResult);
-            Assert.Equal(nameof(PlayersController.GetPlayerById), createdAtResult.ActionName);
-            var returnedPlayer = createdAtResult.Value as Player;
-            Assert.NotNull(returnedPlayer);
-            Assert.Equal(51, returnedPlayer.Id);
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var playerDto = Assert.IsType<PlayerDto>(okResult.Value); 
+            Assert.Equal(expectedPlayer.Id, playerDto.Id);
+            Assert.Equal(expectedPlayer.FirstName, playerDto.FirstName);
+            Assert.Equal(expectedPlayer.LastName, playerDto.LastName);
         }
 
         [Fact]
-        public async Task UpdatePlayer_ReturnsOkResult_WithUpdatedPlayer()
+        public async Task GetPlayerById_NonExistingId_ReturnsNotFoundResult()
         {
             // Arrange
-            int id = 51;
-            var updatedPlayer = new Player
-            {
-                Id = id,
-                FirstName = "Beatriz",
-                LastName = "Hadda Maia",
-                Height = 1.85,
-                BirthDate = new DateTime(1996, 5, 30),
-                HandPlay = Entities.HandPlay.Left,
-                Nationality = "Brazil"
-            };
-
-            _mockService.Setup(s => s.UpdatePlayerAsync(id, It.IsAny<Player>())).ReturnsAsync(updatedPlayer);
+            var mockService = new Mock<IPlayerService>();
+            mockService.Setup(service => service.GetPlayerByIdAsync(It.IsAny<int>())).ReturnsAsync((Player)null);
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
 
             // Act
-            var result = await _controller.UpdatePlayer(id, updatedPlayer);
-            var okResult = result as OkObjectResult;
+            var result = await controller.GetPlayerById(99);
 
             // Assert
-            Assert.NotNull(okResult);
-            var returnedPlayer = okResult.Value as Player;
-            Assert.NotNull(returnedPlayer);
-            Assert.Equal(id, returnedPlayer.Id);
-            Assert.Equal("Beatriz", returnedPlayer.FirstName);
-            Assert.Equal("Hadda Maia", returnedPlayer.LastName);
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task AddPlayer_ValidPlayer_ReturnsCreatedAtActionResult()
+        {
+            // Arrange
+            var mockService = new Mock<IPlayerService>();
+            var newPlayerDto = new PlayerDto { FirstName = "New", LastName = "Player", Nationality = "Test", BirthDate = DateTime.Now, Height = 1.8, HandPlay = Entities.HandPlay.Right }; // Utilisez Entities.HandPlay
+            var newPlayer = new Player { Id = 1, FirstName = "New", LastName = "Player", Nationality = "Test", BirthDate = DateTime.Now, Height = 1.8, HandPlay = Entities.HandPlay.Right };
+
+            mockService.Setup(service => service.AddPlayerAsync(It.IsAny<Player>()))
+                       .ReturnsAsync((Player p) => { p.Id = 1; return p; }); 
+
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
+
+            // Act
+            var result = await controller.AddPlayer(newPlayerDto);
+
+            // Assert
+            var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
+            Assert.Equal(nameof(PlayersController.GetPlayerById), createdAtActionResult.ActionName);
+            Assert.Equal(1, createdAtActionResult.RouteValues["id"]);
+            var returnedPlayerDto = Assert.IsType<PlayerDto>(createdAtActionResult.Value); 
+            Assert.Equal("New", returnedPlayerDto.FirstName);
+
+
+            mockService.Verify(service => service.AddPlayerAsync(It.IsAny<Player>()), Times.Once);
+        }
+
+
+        [Fact]
+        public async Task UpdatePlayer_ValidPlayer_ReturnsOkResult()
+        {
+            // Arrange
+            var mockService = new Mock<IPlayerService>();
+            var existingPlayer = new Player { Id = 1, FirstName = "Old", LastName = "Name", Nationality = "Test", BirthDate = DateTime.Now, Height = 1.8, HandPlay = Entities.HandPlay.Right };
+            var updatedPlayerDto = new PlayerDto { Id = 1, FirstName = "Updated", LastName = "Name", Nationality = "Test", BirthDate = DateTime.Now, Height = 1.8, HandPlay = Entities.HandPlay.Right }; // Utilisez Entities.HandPlay
+            var updatedPlayer = new Player { Id = 1, FirstName = "Updated", LastName = "Name", Nationality = "Test", BirthDate = DateTime.Now, Height = 1.8, HandPlay = Entities.HandPlay.Right };
+
+            mockService.Setup(service => service.UpdatePlayerAsync(It.IsAny<int>(), It.IsAny<Player>())).ReturnsAsync(updatedPlayer);
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
+
+            // Act
+            var result = await controller.UpdatePlayer(1, updatedPlayerDto);
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var returnedPlayerDto = Assert.IsType<PlayerDto>(okResult.Value); 
+            Assert.Equal("Updated", returnedPlayerDto.FirstName);
+            mockService.Verify(service => service.UpdatePlayerAsync(It.IsAny<int>(), It.IsAny<Player>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task UpdatePlayer_InvalidId_ReturnsBadRequest()
+        {
+            // Arrange
+            var mockService = new Mock<IPlayerService>();
+            var updatedPlayerDto = new PlayerDto { Id = 1, FirstName = "Updated", LastName = "Name" };
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
+
+            // Act
+            var result = await controller.UpdatePlayer(2, updatedPlayerDto);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task UpdatePlayer_PlayerNotFound_ReturnsNotFound()
+        {
+            // Arrange
+            var mockService = new Mock<IPlayerService>();
+            var updatedPlayerDto = new PlayerDto { Id = 1, FirstName = "Updated", LastName = "Name" };
+            mockService.Setup(service => service.UpdatePlayerAsync(It.IsAny<int>(), It.IsAny<Player>())).ReturnsAsync((Player)null);
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
+
+            // Act
+            var result = await controller.UpdatePlayer(1, updatedPlayerDto);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public async Task DeletePlayer_ExistingId_ReturnsNoContent()
+        {
+            // Arrange
+            var mockService = new Mock<IPlayerService>();
+            mockService.Setup(service => service.DeletePlayerAsync(1)).ReturnsAsync(true);
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
+
+            // Act
+            var result = await controller.DeletePlayer(1);
+
+            // Assert
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public async Task DeletePlayer_NonExistingId_ReturnsNotFound()
+        {
+            // Arrange
+            var mockService = new Mock<IPlayerService>();
+            mockService.Setup(service => service.DeletePlayerAsync(It.IsAny<int>())).ReturnsAsync(false);
+            var controller = new PlayersController(mockService.Object, NullLogger<PlayersController>.Instance);
+
+            // Act
+            var result = await controller.DeletePlayer(99);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result); 
         }
     }
 }

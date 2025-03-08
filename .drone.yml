@@ -22,8 +22,9 @@ steps:
     image: plugins/docker
     settings:
       dockerfile: WebApplicationJuaraujoda/Dockerfile
-      context: .
+      context: . 
       registry: hub.codefirst.iut.uca.fr
+      
       repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien
       username:
         from_secret: SECRET_REGISTRY_USERNAME
@@ -39,7 +40,6 @@ steps:
       CONTAINERNAME: pm2-webapi
       COMMAND: create
       OVERWRITE: true
-      # URL de base de l'API sur CodeFirst (AVEC HTTPS et le chemin complet)
       CODEFIRST_CLIENTDRONE_ENV_API_BASE_URL: https://julienaraujo_da_silva-pm2-webapi.apps.codefirst.iut.uca.fr/api/v1/Players
     depends_on:
       - docker-build-and-push

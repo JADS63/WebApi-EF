@@ -1,6 +1,5 @@
 ﻿namespace Dto
 {
-
     public class PaginationDto
     {
         public int Index { get; set; }

@@ -1,45 +1,33 @@
-# Use the official .NET SDK image for building
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-
-# Set the working directory inside the container
-WORKDIR /src
-
-# Copy the project file and restore dependencies *first*
-COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/WebApplicationJuaraujoda/
-
-# DIAGNOSTIC:  List the contents of the current directory
-RUN ls -la
-
-# Copy *everything* (including the .sln)
-COPY . .
-
-# Restore dependencies
-RUN dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
-
-# Build the application in Release mode
-WORKDIR /src/WebApplicationJuaraujoda/WebApplicationJuaraujoda
-RUN dotnet build WtaApi.csproj -c Release --no-restore
-
-# Publish the application
-FROM build AS publish
-RUN dotnet publish WtaApi.csproj -c Release --no-restore -o /app/publish
-
-# Use the ASP.NET Core runtime image for the final image
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
-
-# Set the working directory
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER $APP_UID
 WORKDIR /app
-
-# Copy the published output from the publish stage
-COPY --from=publish /app/publish .
-
-# Expose port 8080
 EXPOSE 8080
+EXPOSE 8081
 
-# Set environment variables
-ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_HTTP_PORTS=8080
-ENV DOTNET_RUNNING_IN_CONTAINER=true
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+# Adaptez les chemins pour qu'ils correspondent à VOTRE structure:
+COPY ["WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/WebApplicationJuaraujoda/"]
+COPY ["WebApplicationJuaraujoda/Dto/Dto.csproj", "WebApplicationJuaraujoda/Dto/"]
+COPY ["WebApplicationJuaraujoda/Services/Services.csproj", "WebApplicationJuaraujoda/Services/"]
+COPY ["WebApplicationJuaraujoda/Stub/StubbedDtoLib.csproj", "WebApplicationJuaraujoda/Stub/"]
+COPY ["WebApplicationJuaraujoda/WebApiUtilisation/WebApiUtilisation.csproj", "WebApplicationJuaraujoda/WebApiUtilisation/"]
+COPY ["WebApplicationJuaraujoda/Extensions/Extensions.csproj", "WebApplicationJuaraujoda/Extensions/"]
+COPY ["WebApplicationJuaraujoda/Entities/Entities.csproj", "WebApplicationJuaraujoda/Entities/"]
+COPY ["WebApplicationJuaraujoda/Tests/Tests.csproj", "WebApplicationJuaraujoda/Tests/"]
+# Copie de la solution
+COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda.sln .
+RUN dotnet restore "WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj"
+COPY . .
+WORKDIR "/src/WebApplicationJuaraujoda/WebApplicationJuaraujoda"
+RUN dotnet build "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Define the entry point to run the application
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "WtaApi.dll"]

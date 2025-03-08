@@ -1,6 +1,5 @@
 ﻿namespace Entities
 {
-
     public class Pagination
     {
         public int Index { get; set; }

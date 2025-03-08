@@ -9,3 +9,9 @@ C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuarau
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\obj\Debug\net9.0\refint\WebApiUtilisation.dll
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\obj\Debug\net9.0\WebApiUtilisation.pdb
 C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\obj\Debug\net9.0\ref\WebApiUtilisation.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\bin\Debug\net9.0\Dto.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\bin\Debug\net9.0\Entities.dll
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\bin\Debug\net9.0\Dto.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\bin\Debug\net9.0\Entities.pdb
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\obj\Debug\net9.0\WebApiUtilisation.csproj.AssemblyReference.cache
+C:\Users\julie\Desktop\PM2_WebAPIAndEF_araujodasilva.julien\WebApplicationJuaraujoda\WebApiUtilisation\obj\Debug\net9.0\WebApiUt.8FE37F96.Up2Date

@@ -16,22 +16,22 @@ namespace Services
         public Task<IEnumerable<Player>> GetPlayersAsync() =>
             _serviceDto.GetPlayersAsync();
 
-        public Task<IEnumerable<Player>> GetPlayersAsync(int index, int count, int sortCriteria) =>
+        public Task<IEnumerable<Player>> GetPlayersAsync(int index, int count, Entities.SortCriteria sortCriteria) =>
             _serviceDto.GetPlayersAsync(index, count, sortCriteria);
 
-        public Task<IEnumerable<Player>> GetPlayersByNameAsync(string name, int index, int count, int sortCriteria) =>
+        public Task<IEnumerable<Player>> GetPlayersByNameAsync(string name, int index, int count, Entities.SortCriteria sortCriteria) =>
             _serviceDto.GetPlayersByNameAsync(name, index, count, sortCriteria);
 
-        public Task<IEnumerable<Player>> GetPlayersByNationalityAsync(string nationality, int index, int count, int sortCriteria) =>
+        public Task<IEnumerable<Player>> GetPlayersByNationalityAsync(string nationality, int index, int count, Entities.SortCriteria sortCriteria) =>
             _serviceDto.GetPlayersByNationalityAsync(nationality, index, count, sortCriteria);
 
-        public Task<Player> GetPlayerByIdAsync(int id) =>
+        public Task<Player?> GetPlayerByIdAsync(int id) =>
             _serviceDto.GetPlayerByIdAsync(id);
 
-        public Task<Player> AddPlayerAsync(Player player) =>
+        public Task<Player?> AddPlayerAsync(Player player) =>
             _serviceDto.AddPlayerAsync(player);
 
-        public Task<Player> UpdatePlayerAsync(int id, Player player) =>
+        public Task<Player?> UpdatePlayerAsync(int id, Player player) =>
             _serviceDto.UpdatePlayerAsync(id, player);
 
         public Task<bool> DeletePlayerAsync(int id) =>

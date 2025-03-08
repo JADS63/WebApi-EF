@@ -12,6 +12,7 @@
           "Entities": "1.0.0",
           "Microsoft.NET.Test.Sdk": "17.8.0",
           "Moq": "4.20.72",
+          "NSwag.AspNetCore": "14.2.0",
           "Shared": "1.0.0",
           "StubbedDtoLib": "1.0.0",
           "WtaApi": "1.0.0",
@@ -1270,6 +1271,10 @@
         }
       },
       "Dto/1.0.0": {
+        "dependencies": {
+          "Entities": "1.0.0",
+          "NSwag.AspNetCore": "14.2.0"
+        },
         "runtime": {
           "Dto.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -1278,6 +1283,9 @@
         }
       },
       "Entities/1.0.0": {
+        "dependencies": {
+          "NSwag.AspNetCore": "14.2.0"
+        },
         "runtime": {
           "Entities.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -1288,7 +1296,8 @@
       "Extensions/1.0.0": {
         "dependencies": {
           "Dto": "1.0.0",
-          "Entities": "1.0.0"
+          "Entities": "1.0.0",
+          "NSwag.AspNetCore": "14.2.0"
         },
         "runtime": {
           "Extensions.dll": {
@@ -1303,6 +1312,7 @@
           "Entities": "1.0.0",
           "Extensions": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "2.3.0",
+          "NSwag.AspNetCore": "14.2.0",
           "WebApiUtilisation": "1.0.0"
         },
         "runtime": {
@@ -1316,6 +1326,7 @@
         "dependencies": {
           "Dto": "1.0.0",
           "Entities": "1.0.0",
+          "NSwag.AspNetCore": "14.2.0",
           "Shared": "1.0.0"
         },
         "runtime": {
@@ -1326,6 +1337,10 @@
         }
       },
       "WebApiUtilisation/1.0.0": {
+        "dependencies": {
+          "Dto": "1.0.0",
+          "NSwag.AspNetCore": "14.2.0"
+        },
         "runtime": {
           "WebApiUtilisation.dll": {
             "assemblyVersion": "1.0.0.0",

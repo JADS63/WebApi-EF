@@ -311,6 +311,19 @@
             "related": ".xml"
           }
         }
+      },
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "NSwag.AspNetCore": "14.2.0"
+        },
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
       }
     }
   },
@@ -938,10 +951,16 @@
         "yamldotnet.16.2.0.nupkg.sha512",
         "yamldotnet.nuspec"
       ]
+    },
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Entities >= 1.0.0",
       "NSwag.AspNetCore >= 14.2.0"
     ]
   },
@@ -977,7 +996,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\WebApplicationJuaraujoda\\Entities\\Entities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -3,9 +3,6 @@ using Entities;
 
 namespace WtaApi.Mappers
 {
-    /// <summary>
-    /// Fournit des méthodes pour transformer une entité Player en PlayerDto et inversement.
-    /// </summary>
     public static class PlayerMapper
     {
         public static PlayerDto ToDto(Player player)
@@ -20,8 +17,7 @@ namespace WtaApi.Mappers
                 LastName = player.LastName,
                 Height = player.Height,
                 BirthDate = player.BirthDate,
-                // Conversion de l'énumération : on suppose que les valeurs numériques sont identiques.
-                HandPlay = (Dto.HandPlay)player.HandPlay,
+                HandPlay = (Entities.HandPlay)player.HandPlay, 
                 Nationality = player.Nationality
             };
         }
@@ -38,8 +34,7 @@ namespace WtaApi.Mappers
                 LastName = playerDto.LastName,
                 Height = playerDto.Height,
                 BirthDate = playerDto.BirthDate,
-                // Conversion de l'énumération.
-                HandPlay = (Entities.HandPlay)playerDto.HandPlay,
+                HandPlay = (Entities.HandPlay)playerDto.HandPlay, 
                 Nationality = playerDto.Nationality
             };
         }
