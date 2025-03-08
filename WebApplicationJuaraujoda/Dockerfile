@@ -6,14 +6,14 @@ WORKDIR /src
 
 # Copy the project file and restore dependencies *first* (CORRECTED PATH)
 COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj WebApplicationJuaraujoda/WebApplicationJuaraujoda/
-COPY *.sln ./  # Copy the solution file from the repository root
+COPY * ./sln ./
 RUN dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj
 
 # Copy the entire source code (CORRECTED PATH)
 COPY WebApplicationJuaraujoda/ WebApplicationJuaraujoda/
 
 # Build the application in Release mode
-WORKDIR /src/WebApplicationJuaraujoda/WebApplicationJuaraujoda # WORKDIR includes subfolder
+WORKDIR /src/WebApplicationJuaraujoda/WebApplicationJuaraujoda
 RUN dotnet build WtaApi.csproj -c Release --no-restore
 
 # Publish the application
@@ -38,4 +38,4 @@ ENV ASPNETCORE_HTTP_PORTS=8080
 ENV DOTNET_RUNNING_IN_CONTAINER=true
 
 # Define the entry point to run the application
-ENTRYPOINT ["dotnet", "WtaApi.csproj"]
+ENTRYPOINT ["dotnet", "WtaApi.dll"]

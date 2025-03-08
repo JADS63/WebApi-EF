@@ -13,9 +13,9 @@ steps:
       # Utiliser les chemins complets et corrects, en tenant compte du sous-dossier
       - echo "Directory structure (root of repository):"
       - ls -R
-      - dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj  # Chemin corrigé
-      - dotnet build WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore  # Chemin corrigé
-      - dotnet publish WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o ./build/release # Chemin corrigé pour publish, sortie relative
+      - dotnet restore WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj  # Chemin correct
+      - dotnet build WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore  # Chemin correct
+      - dotnet publish WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o ./build/release # Chemin correct, sortie relative
       - echo "Published files:"
       - ls -R ./build/release
 
