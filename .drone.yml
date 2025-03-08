@@ -15,10 +15,12 @@ steps:
       - ls -R
       - dotnet restore WebApplicationJuaraujoda.sln
       - dotnet build WebApplicationJuaraujoda.sln -c Release --no-restore
-      # Change the publish command to use the correct path:
-      - dotnet publish WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+      # Update the publish command with the correct path:
+      - dotnet publish WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
       - echo "Published files:"
       - ls -R $CI_PROJECT_DIR/build/release
+
+
 
 
   - name: docker-build-and-push
