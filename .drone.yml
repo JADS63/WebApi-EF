@@ -10,8 +10,19 @@ steps:
   - name: restore-build-publish
     image: mcr.microsoft.com/dotnet/sdk:9.0
     commands:
+      # Go to the folder where the solution resides.
       - cd WebApplicationJuaraujoda
+      # Restore all projects in the solution.
       - dotnet restore WebApplicationJuaraujoda.sln
+      # Build the solution in Release mode (without re-restoring).
       - dotnet build WebApplicationJuaraujoda.sln -c Release --no-restore
-      # Note: Adjust the project file path to where your WtaApi.csproj actually is.
-      - dotnet publish WebApplicationJuaraujoda/WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+      # Publish the web API project.
+      # Make sure the path to your project file is correct.
+      - dotnet publish WtaApi.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+      # List all published files recursively for debugging.
+      - echo "Published files:"
+      - ls -R $CI_PROJECT_DIR/build/release
+      # Optionally, print environment information:
+      - echo "Current working directory:"
+      - pwd
+      - echo "CI_PROJECT_DIR is set to: $CI_PROJECT_DIR"
