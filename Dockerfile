@@ -9,7 +9,7 @@ COPY ["PartieAPI/WebApplicationJuaraujoda/WebApiUtilisation/WebApiUtilisation.cs
 COPY ["PartieAPI/WebApplicationJuaraujoda/Extensions/Extensions.csproj", "PartieAPI/WebApplicationJuaraujoda/Extensions/"]
 COPY ["PartieAPI/WebApplicationJuaraujoda/Entities/Entities.csproj", "PartieAPI/WebApplicationJuaraujoda/Entities/"]
 COPY ["PartieAPI/WebApplicationJuaraujoda/Tests/Tests.csproj", "PartieAPI/WebApplicationJuaraujoda/Tests/"]
-COPY WebApplicationJuaraujoda.sln .
+COPY PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda.sln .
 RUN dotnet restore "PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj"
 COPY . .
 WORKDIR "/src/PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda"
