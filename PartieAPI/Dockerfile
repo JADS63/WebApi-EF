@@ -9,7 +9,7 @@ COPY ["WebApiUtilisation/WebApiUtilisation.csproj", "WebApiUtilisation/"]
 COPY ["Extensions/Extensions.csproj", "Extensions/"]
 COPY ["Entities/Entities.csproj", "Entities/"]
 COPY ["Tests/Tests.csproj", "Tests/"]
-COPY WebApplicationJuaraujoda.sln .
+COPY WebApplicationJuaraujoda.sln .  # Corrected line: Removed redundant "WebApplicationJuaraujoda/"
 RUN dotnet restore "WebApplicationJuaraujoda/WtaApi.csproj"
 COPY . .
 WORKDIR "/src/WebApplicationJuaraujoda"
