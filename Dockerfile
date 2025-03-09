@@ -21,7 +21,7 @@ RUN dotnet publish "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:Us
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-EXPOSE 80 # Exposition du port 80 (standard HTTP sur CodeFirst)
+EXPOSE 80 
 ENV ASPNETCORE_HTTP_PORTS=80
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 ENTRYPOINT ["dotnet", "WtaApi.dll"]
