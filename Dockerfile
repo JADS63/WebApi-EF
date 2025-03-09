@@ -3,7 +3,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/WebApplicationJuaraujoda/"]
 COPY ["WebApplicationJuaraujoda/Dto/Dto.csproj", "WebApplicationJuaraujoda/Dto/"]
-COPY ["WebApplicationJuaraujoda/Services/Services.csproj", "WebApplicationJuaraujoda/Services/"]
+COPY ["WebApplicationJuaraujoda/Services/Shared.csproj", "WebApplicationJuaraujoda/Services/"]
 COPY ["WebApplicationJuaraujoda/Stub/StubbedDtoLib.csproj", "WebApplicationJuaraujoda/Stub/"]
 COPY ["WebApplicationJuaraujoda/WebApiUtilisation/WebApiUtilisation.csproj", "WebApplicationJuaraujoda/WebApiUtilisation/"]
 COPY ["WebApplicationJuaraujoda/Extensions/Extensions.csproj", "WebApplicationJuaraujoda/Extensions/"]
