@@ -1,18 +1,18 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/"]
-COPY ["Dto/Dto.csproj", "Dto/"]
-COPY ["Services/Shared.csproj", "Services/"]
-COPY ["Stub/StubbedDtoLib.csproj", "Stub/"]
-COPY ["WebApiUtilisation/WebApiUtilisation.csproj", "WebApiUtilisation/"]
-COPY ["Extensions/Extensions.csproj", "Extensions/"]
-COPY ["Entities/Entities.csproj", "Entities/"]
-COPY ["Tests/Tests.csproj", "Tests/"]
-COPY WebApplicationJuaraujoda.sln .  # Corrected line: Removed redundant "WebApplicationJuaraujoda/"
-RUN dotnet restore "WebApplicationJuaraujoda/WtaApi.csproj"
+COPY ["PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj", "PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/Dto/Dto.csproj", "PartieAPI/WebApplicationJuaraujoda/Dto/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/Services/Shared.csproj", "PartieAPI/WebApplicationJuaraujoda/Services/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/Stub/StubbedDtoLib.csproj", "PartieAPI/WebApplicationJuaraujoda/Stub/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/WebApiUtilisation/WebApiUtilisation.csproj", "PartieAPI/WebApplicationJuaraujoda/WebApiUtilisation/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/Extensions/Extensions.csproj", "PartieAPI/WebApplicationJuaraujoda/Extensions/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/Entities/Entities.csproj", "PartieAPI/WebApplicationJuaraujoda/Entities/"]
+COPY ["PartieAPI/WebApplicationJuaraujoda/Tests/Tests.csproj", "PartieAPI/WebApplicationJuaraujoda/Tests/"]
+COPY WebApplicationJuaraujoda.sln .
+RUN dotnet restore "PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj"
 COPY . .
-WORKDIR "/src/WebApplicationJuaraujoda"
+WORKDIR "/src/PartieAPI/WebApplicationJuaraujoda/WebApplicationJuaraujoda"
 RUN dotnet build "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
