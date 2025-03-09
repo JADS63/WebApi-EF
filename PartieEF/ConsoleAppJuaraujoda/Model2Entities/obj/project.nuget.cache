@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cdykSkadSCE=",
+  "dgSpecHash": "ZbU2smRiIYM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Model2Entities\\Model2Entities.csproj",
+  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Model2Entities\\Model2Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.2\\microsoft.data.sqlite.core.9.0.2.nupkg.sha512",
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.2\\microsoft.entityframeworkcore.9.0.2.nupkg.sha512",

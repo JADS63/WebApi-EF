@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZsmGHnxytRE=",
+  "dgSpecHash": "rqFtsu1iu5g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\TestStubEF\\TestStubEF.csproj",
+  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\TestStubEF\\TestStubEF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.2\\microsoft.data.sqlite.core.9.0.2.nupkg.sha512",

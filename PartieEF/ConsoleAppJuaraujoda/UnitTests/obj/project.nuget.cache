@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/VfDwvO/V8I=",
+  "dgSpecHash": "QW/pMjlTc4E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\UnitTests\\UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julie\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Model\\Model.csproj": {}
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Model\\Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj": {
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -86,14 +86,14 @@
         }
       }
     },
-    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Model\\Model.csproj": {
+    "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Model\\obj\\",
+        "outputPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -115,8 +115,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj"
+              "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj"
               }
             }
           }

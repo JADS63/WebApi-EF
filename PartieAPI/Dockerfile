@@ -1,18 +1,18 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/WebApplicationJuaraujoda/"]
-COPY ["WebApplicationJuaraujoda/Dto/Dto.csproj", "WebApplicationJuaraujoda/Dto/"]
-COPY ["WebApplicationJuaraujoda/Services/Shared.csproj", "WebApplicationJuaraujoda/Services/"]
-COPY ["WebApplicationJuaraujoda/Stub/StubbedDtoLib.csproj", "WebApplicationJuaraujoda/Stub/"]
-COPY ["WebApplicationJuaraujoda/WebApiUtilisation/WebApiUtilisation.csproj", "WebApplicationJuaraujoda/WebApiUtilisation/"]
-COPY ["WebApplicationJuaraujoda/Extensions/Extensions.csproj", "WebApplicationJuaraujoda/Extensions/"]
-COPY ["WebApplicationJuaraujoda/Entities/Entities.csproj", "WebApplicationJuaraujoda/Entities/"]
-COPY ["WebApplicationJuaraujoda/Tests/Tests.csproj", "WebApplicationJuaraujoda/Tests/"]
-COPY WebApplicationJuaraujoda/WebApplicationJuaraujoda.sln .
-RUN dotnet restore "WebApplicationJuaraujoda/WebApplicationJuaraujoda/WtaApi.csproj"
+COPY ["WebApplicationJuaraujoda/WtaApi.csproj", "WebApplicationJuaraujoda/"]
+COPY ["Dto/Dto.csproj", "Dto/"]
+COPY ["Services/Shared.csproj", "Services/"]
+COPY ["Stub/StubbedDtoLib.csproj", "Stub/"]
+COPY ["WebApiUtilisation/WebApiUtilisation.csproj", "WebApiUtilisation/"]
+COPY ["Extensions/Extensions.csproj", "Extensions/"]
+COPY ["Entities/Entities.csproj", "Entities/"]
+COPY ["Tests/Tests.csproj", "Tests/"]
+COPY WebApplicationJuaraujoda.sln .
+RUN dotnet restore "WebApplicationJuaraujoda/WtaApi.csproj"
 COPY . .
-WORKDIR "/src/WebApplicationJuaraujoda/WebApplicationJuaraujoda"
+WORKDIR "/src/WebApplicationJuaraujoda"
 RUN dotnet build "WtaApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

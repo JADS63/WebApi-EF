@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PjkiGk2QZcc=",
+  "dgSpecHash": "HjKnHSU66xg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\julie\\Desktop\\PM2_WebAPIAndEF_araujodasilva.julien\\PartieEF\\ConsoleAppJuaraujoda\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julie\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\julie\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
