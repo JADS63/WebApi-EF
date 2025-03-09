@@ -10,8 +10,8 @@ steps:
   - name: docker-build-and-push
     image: plugins/docker
     settings:
-      dockerfile: Dockerfile  # Le Dockerfile est à la racine
-      context: .  # Le contexte est la racine du dépôt
+      dockerfile: Dockerfile
+      context: .
       registry: hub.codefirst.iut.uca.fr
       repo: hub.codefirst.iut.uca.fr/julien.araujo_da_silva/pm2_webapiandef_araujodasilva.julien
       username:
@@ -26,7 +26,6 @@ steps:
       CONTAINERNAME: pm2-webapi
       COMMAND: create
       OVERWRITE: true
-      # URL de base de l'API sur CodeFirst (AVEC HTTPS et le chemin complet)
       CODEFIRST_CLIENTDRONE_ENV_API_BASE_URL: https://julienaraujo_da_silva-pm2-webapi.apps.codefirst.iut.uca.fr/api/v1/Players
     depends_on:
       - docker-build-and-push
